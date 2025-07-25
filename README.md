@@ -1,38 +1,29 @@
-### Description
+# 🛠️ Portfólio – Victor Reginaldo
 
-A simple portfolio template for developer/designers built with React. 
+Sou desenvolvedor de software com foco na construção de **produtos digitais completos**, desde a concepção até a entrega. Tenho experiência criando sistemas robustos, APIs bem estruturadas e interfaces funcionais, sempre com atenção à clareza, desempenho e sustentabilidade do código.
 
-### [live preview](https://ubaimutl.github.io/react-portfolio/)
+Este repositório reúne alguns dos projetos que desenvolvi, com o objetivo de resolver problemas reais e gerar valor para negócios e pessoas.
 
-[![react portfoiio](src/assets/images/react%20portfolio%20gif.gif)](https://ubaimutl.github.io/react-portfolio/)
+## 🚀 O que eu faço
 
-### Features
+- Desenvolvimento backend com foco em regras de negócio, modelagem de dados e APIs escaláveis
+- Integração com bancos de dados relacionais e serviços externos
+- Criação de interfaces simples, funcionais e integradas aos fluxos do sistema
+- Aplicação de boas práticas de engenharia de software em todo o processo
 
-- Fully Responsive
-- Multi-Page Layout
-- Contact Form With EmailJs
-- React-Bootstrap
-- Edit Content From One Place
+## ⚙️ Tecnologias
 
-### Setup
+Trabalho principalmente com:
 
-Get the code
+- **Python** e **Django** para aplicações web e APIs REST
+- **HTML**, **CSS**, **JavaScript** e **Bootstrap** para interfaces funcionais
+- **React** em projetos que exigem SPA
+- **PostgreSQL** e **MySQL** como bancos de dados relacionais
+- **Git**, versionamento com branches e automações com CI/CD
+- Deploys usando servidores Linux, Nginx e Docker (quando necessário)
 
-<pre>git clone https://github.com/ubaimutl/react-portfolio.git</pre>
- 
-Install required dependencies
+## 📫 Contato
 
-<pre>yarn install</pre>
+Para dúvidas, parcerias ou networking profissional:
 
-
-Start the server
-
-<pre>yarn start</pre>
-
-### More
-
-Modify pages content in  `src/content_option.js`.
-
-### Thanks
-
-If you like this portfolio template don't forget give it a ⭐ 
+✉️ [contato.victordev02@gmail.com](mailto:contato.victordev02@gmail.com)
