@@ -376,6 +376,7 @@
 
 .projects-section {
   margin-top: 84px;
+  padding: 0 20px;
 }
 
 .projects-header {
@@ -589,7 +590,7 @@
 
 .contact-section {
   margin-top: 84px;
-  padding: 0;
+  padding: 0 22px;
 }
 
 .contact-title {
@@ -849,6 +850,11 @@
     gap: 22px;
   }
 
+  .projects-section,
+  .contact-section {
+    padding: 0 28px;
+  }
+
   .skills-title {
     font-size: clamp(1.75rem, 2.8vw, 2.2rem);
   }
@@ -912,6 +918,11 @@
   .skills-section,
   .contact-section {
     margin-top: 96px;
+  }
+
+  .projects-section,
+  .contact-section {
+    padding: 0 34px;
   }
 
   .projects-grid {
