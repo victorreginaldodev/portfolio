@@ -4,14 +4,17 @@ const projects = [
   {
     name: 'Projeto 01',
     imageLabel: 'Preview do projeto 01',
+    description: 'Uma apresentação curta do projeto, destacando proposta, contexto e o valor entregue.',
   },
   {
     name: 'Projeto 02',
     imageLabel: 'Preview do projeto 02',
+    description: 'Uma apresentação curta do projeto, destacando proposta, contexto e o valor entregue.',
   },
   {
     name: 'Projeto 03',
     imageLabel: 'Preview do projeto 03',
+    description: 'Uma apresentação curta do projeto, destacando proposta, contexto e o valor entregue.',
   },
 ]
 
@@ -28,16 +31,16 @@ function Projects() {
       </div>
 
       <div className="projects-grid" aria-label="Lista de projetos">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <article key={project.name} className="project-card">
             <div className="project-preview" aria-label={project.imageLabel}>
               <div className="project-preview-glow" />
-              <span className="project-preview-badge">{`0${index + 1}`}</span>
               <span className="project-preview-text">Imagem do projeto</span>
             </div>
 
             <div className="project-card-body">
               <h3 className="project-card-title">{project.name}</h3>
+              <p className="project-card-description">{project.description}</p>
 
               <div className="project-card-actions">
                 <button type="button" className="project-icon-button" aria-label={`GitHub do ${project.name}`}>

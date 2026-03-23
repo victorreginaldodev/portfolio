@@ -351,7 +351,7 @@
 .contact-title {
   margin: 16px 0 0;
   width: 100%;
-  max-width: none;
+  max-width: 24ch;
   color: var(--text-title);
   font-size: clamp(1.58rem, 8vw, 2rem);
   line-height: 1.06;
@@ -405,12 +405,34 @@
   box-shadow:
     0 22px 44px rgba(0, 0, 0, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%),
+    radial-gradient(circle at top right, rgba(34, 211, 164, 0.12), transparent 30%);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 164, 0.18);
+  box-shadow:
+    0 28px 58px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .project-preview {
   position: relative;
   display: grid;
-  align-content: space-between;
+  align-items: end;
   min-height: 220px;
   padding: 16px;
   background:
@@ -427,22 +449,6 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(34, 211, 164, 0.24), transparent 68%);
   filter: blur(10px);
-}
-
-.project-preview-badge {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-title);
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
 }
 
 .project-preview-text {
@@ -468,6 +474,13 @@
   font-size: 1.12rem;
   line-height: 1.15;
   letter-spacing: -0.04em;
+}
+
+.project-card-description {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  line-height: 1.75;
 }
 
 .project-card-actions {
@@ -499,8 +512,10 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-height: 40px;
-  padding: 0.7rem 0.9rem;
+  justify-content: center;
+  flex: 1;
+  min-height: 42px;
+  padding: 0.74rem 0.96rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   color: var(--text-title);
@@ -530,6 +545,7 @@
 
 .skills-title {
   margin: 16px 0 0;
+  max-width: 24ch;
   color: var(--text-title);
   font-size: clamp(1.5rem, 7vw, 1.9rem);
   line-height: 1.08;
@@ -595,6 +611,12 @@
 
 .contact-title {
   margin-bottom: 10px;
+}
+
+.contact-copy,
+.contact-message-card,
+.contact-message-fields {
+  width: 100%;
 }
 
 .contact-body {
@@ -948,7 +970,6 @@
   }
 
   .contact-message-card {
-    max-width: 760px;
     padding: 24px;
   }
 

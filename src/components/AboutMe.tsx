@@ -1,9 +1,8 @@
 const aboutParagraphs = [
-  'Desenvolvo sistemas focados em resolver problemas reais de negócio, com ênfase em backend e regras mais complexas.',
-  'Tenho uma abordagem prática e orientada à execução, buscando me aprofundando no que for necessário, sob demanda — seja arquitetura, negócio ou implementação.',
-  'Atuo como cofundador na construção do SSTSuite, uma plataforma SaaS para Saúde e Segurança do Trabalho, onde trabalho desde as regras de negócio até o sistema em produção.',
-  'Também tenho experiência profissional no desenvolvimento de sistemas ERP, atuando na organização e automação de rotinas operacionais.',
-  'Busco sempre construir sistemas confiáveis, escaláveis e que realmente gerem impacto na operação.',
+  'Minha atuação vai além de escrever código: eu entro no problema, entendo a operação e transformo regra de negócio em sistema confiável.',
+  'Como cofundador do SSTSuite, participo da construção do produto com visão de arquitetura, contexto e execução.',
+  'Também trago experiência no desenvolvimento de sistemas ERP, lidando com processos que exigem clareza, consistência e responsabilidade técnica.',
+  'Gosto de trabalhar onde software precisa sustentar decisão real, rotina real e crescimento real.',
 ]
 
 function AboutMe() {
