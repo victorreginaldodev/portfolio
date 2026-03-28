@@ -84,9 +84,24 @@ const skills = [
 function Skills() {
   return (
     <section className="skills-section" id="skills">
-      <div className="skills-header">
-        <span className="skills-kicker">Skills</span>
-        <h2 className="skills-title">Tecnologias e fundamentos que fazem parte do meu dia a dia.</h2>
+      <div className="skills-layout">
+        <div className="skills-header">
+          <span className="skills-kicker">Skills</span>
+          <h2 className="skills-title">Tecnologias e fundamentos que fazem parte do meu dia a dia.</h2>
+        </div>
+
+        <div className="skills-featured" aria-label="Tecnologias em destaque">
+          {skills.slice(0, 4).map(({ label, icon: Icon, background, color }) => (
+            <article
+              key={label}
+              className="skill-featured-pill"
+              style={{ backgroundColor: background, color }}
+            >
+              <Icon aria-hidden="true" className="skill-featured-icon" />
+              <span>{label}</span>
+            </article>
+          ))}
+        </div>
       </div>
 
       <div className="skills-marquee" aria-label="Lista de skills">

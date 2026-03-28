@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaBars, FaDownload, FaXmark } from 'react-icons/fa6'
 import './App.css'
 import AboutMe from './components/AboutMe'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
+import ProjectPage from './components/ProjectPage'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import { getProjectBySlug } from './content/projects'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -16,11 +18,52 @@ const navLinks = [
   { label: 'Contato', href: '#contato' },
 ]
 
+const projectNavLinks = [
+  { label: 'Portfólio', href: '#home' },
+  { label: 'Projetos', href: '#projetos' },
+  { label: 'Contato', href: 'mailto:contato.victordev02@gmail.com' },
+]
+
+function getCurrentProjectSlug(hash: string) {
+  const normalizedHash = hash.replace(/^#\/?/u, '')
+
+  if (!normalizedHash.startsWith('projetos/')) {
+    return null
+  }
+
+  const [, slug] = normalizedHash.split('/')
+
+  return slug || null
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [currentHash, setCurrentHash] = useState(() => window.location.hash)
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash)
+      setIsMenuOpen(false)
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  const currentProjectSlug = getCurrentProjectSlug(currentHash)
+  const currentProject = currentProjectSlug ? getProjectBySlug(currentProjectSlug) : undefined
+  const isProjectView = Boolean(currentProject)
+  const activeNavLinks = isProjectView ? projectNavLinks : navLinks
+
+  useEffect(() => {
+    if (isProjectView) {
+      window.scrollTo(0, 0)
+    }
+  }, [isProjectView, currentProjectSlug])
 
   return (
-    <main className="landing-shell" id="home">
+    <main className={`landing-shell${isProjectView ? ' project-shell' : ''}`} id="home">
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Ir para o inicio">
           <span className="brand-mark">VR</span>
@@ -46,7 +89,7 @@ function App() {
           className={`site-nav${isMenuOpen ? ' site-nav-open' : ''}`}
           aria-label="Navegacao principal"
         >
-          {navLinks.map(({ label, href }) => (
+          {activeNavLinks.map(({ label, href }) => (
             <a
               key={label}
               className="nav-link"
@@ -70,12 +113,21 @@ function App() {
         </a>
       </header>
 
-      <Hero />
-      <AboutMe />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+      {isProjectView && currentProject ? (
+        <>
+          <ProjectPage project={currentProject} />
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Hero />
+          <AboutMe />
+          <Projects />
+          <Skills />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </main>
   )
 }

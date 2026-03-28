@@ -8,17 +8,19 @@ const aboutParagraphs = [
 function AboutMe() {
   return (
     <section className="about-section" id="sobre">
-      <div className="about-header">
-        <span className="about-kicker">Sobre mim</span>
-        <h2 className="about-title">
-          Desenvolvo software focado em resolver problemas reais.
-        </h2>
-      </div>
+      <div className="about-layout">
+        <div className="about-header">
+          <span className="about-kicker">Sobre mim</span>
+          <h2 className="about-title">
+            Desenvolvo software focado em resolver problemas reais.
+          </h2>
+        </div>
 
-      <div className="about-story">
-        {aboutParagraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <div className="about-story">
+          {aboutParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -14,6 +14,12 @@
   --text-main: #d3e4ea;
   --text-soft: #90a9b3;
   --text-muted: #6e8892;
+  --surface-light: #f4f8fa;
+  --surface-light-strong: #ffffff;
+  --surface-light-border: rgba(9, 35, 48, 0.08);
+  --surface-light-title: #0d2230;
+  --surface-light-text: #37505c;
+  --surface-light-muted: #617885;
   --border-soft: rgba(148, 190, 204, 0.18);
   --border-strong: rgba(148, 190, 204, 0.12);
   --shadow:
