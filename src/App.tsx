@@ -18,12 +18,6 @@ const navLinks = [
   { label: 'Contato', href: '#contato' },
 ]
 
-const projectNavLinks = [
-  { label: 'Portfólio', href: '#home' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Contato', href: 'mailto:contato.victordev02@gmail.com' },
-]
-
 function getCurrentProjectSlug(hash: string) {
   const normalizedHash = hash.replace(/^#\/?/u, '')
 
@@ -54,7 +48,6 @@ function App() {
   const currentProjectSlug = getCurrentProjectSlug(currentHash)
   const currentProject = currentProjectSlug ? getProjectBySlug(currentProjectSlug) : undefined
   const isProjectView = Boolean(currentProject)
-  const activeNavLinks = isProjectView ? projectNavLinks : navLinks
 
   useEffect(() => {
     if (isProjectView) {
@@ -64,54 +57,56 @@ function App() {
 
   return (
     <main className={`landing-shell${isProjectView ? ' project-shell' : ''}`} id="home">
-      <header className="site-header">
-        <a className="brand" href="#home" aria-label="Ir para o inicio">
-          <span className="brand-mark">VR</span>
-          <span className="brand-copy">
-            <strong>Victor Reginaldo</strong>
-            <span>Software Engineer</span>
-          </span>
-        </a>
+      {!isProjectView && (
+        <header className="site-header">
+          <a className="brand" href="#home" aria-label="Ir para o inicio">
+            <span className="brand-mark">VR</span>
+            <span className="brand-copy">
+              <strong>Victor Reginaldo</strong>
+              <span>Software Engineer</span>
+            </span>
+          </a>
 
-        <button
-          type="button"
-          className="menu-toggle"
-          aria-expanded={isMenuOpen}
-          aria-controls="site-navigation"
-          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-          onClick={() => setIsMenuOpen((current) => !current)}
-        >
-          {isMenuOpen ? <FaXmark aria-hidden="true" /> : <FaBars aria-hidden="true" />}
-        </button>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-expanded={isMenuOpen}
+            aria-controls="site-navigation"
+            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            onClick={() => setIsMenuOpen((current) => !current)}
+          >
+            {isMenuOpen ? <FaXmark aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+          </button>
 
-        <nav
-          id="site-navigation"
-          className={`site-nav${isMenuOpen ? ' site-nav-open' : ''}`}
-          aria-label="Navegacao principal"
-        >
-          {activeNavLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              className="nav-link"
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noreferrer' : undefined}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span>{label}</span>
-            </a>
-          ))}
-        </nav>
+          <nav
+            id="site-navigation"
+            className={`site-nav${isMenuOpen ? ' site-nav-open' : ''}`}
+            aria-label="Navegacao principal"
+          >
+            {navLinks.map(({ label, href }) => (
+              <a
+                key={label}
+                className="nav-link"
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>{label}</span>
+              </a>
+            ))}
+          </nav>
 
-        <a
-          className={`resume-button${isMenuOpen ? ' resume-button-open' : ''}`}
-          href="/Victor-Reginaldo-Curriculo.html"
-          download
-        >
-          <FaDownload aria-hidden="true" />
-          <span>Baixar curriculo</span>
-        </a>
-      </header>
+          <a
+            className={`resume-button${isMenuOpen ? ' resume-button-open' : ''}`}
+            href="/Victor-Reginaldo-Curriculo.pdf"
+            download
+          >
+            <FaDownload aria-hidden="true" />
+            <span>Baixar curriculo</span>
+          </a>
+        </header>
+      )}
 
       {isProjectView && currentProject ? (
         <>

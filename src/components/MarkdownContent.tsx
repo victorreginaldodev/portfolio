@@ -6,6 +6,14 @@ type MarkdownContentProps = {
 
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
+type MarkdownBlock =
+  | { type: 'divider'; key: string }
+  | { type: 'image'; key: string; alt: string; src: string }
+  | { type: 'heading'; key: string; level: number; content: string }
+  | { type: 'list'; key: string; items: string[] }
+  | { type: 'quote'; key: string; content: string }
+  | { type: 'paragraph'; key: string; content: string }
+
 function renderInline(text: string, keyPrefix: string) {
   return text
     .split(/(\*\*[^*]+\*\*|`[^`]+`)/g)
@@ -42,25 +50,8 @@ function joinParagraphLines(lines: string[]) {
   return lines.map((line) => line.trim()).join(' ')
 }
 
-function renderImage(line: string, key: string) {
-  const match = line.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)$/u)
-
-  if (!match) {
-    return null
-  }
-
-  const [, alt, src] = match
-
-  return (
-    <figure key={key} className="markdown-figure">
-      <img className="markdown-image" src={src} alt={alt || 'Imagem do projeto'} />
-      {alt ? <figcaption>{alt}</figcaption> : null}
-    </figure>
-  )
-}
-
-function parseMarkdown(markdown: string) {
-  const elements: ReactNode[] = []
+function parseBlocks(markdown: string) {
+  const blocks: MarkdownBlock[] = []
   const lines = markdown.replace(/\r\n/g, '\n').trim().split('\n')
 
   let index = 0
@@ -75,18 +66,16 @@ function parseMarkdown(markdown: string) {
     }
 
     if (trimmed === '---') {
-      elements.push(<hr key={`hr-${index}`} className="markdown-divider" />)
+      blocks.push({ type: 'divider', key: `divider-${index}` })
       index += 1
       continue
     }
 
-    if (/^!\[[^\]]*\]\([^)]+\)$/u.test(trimmed)) {
-      const imageElement = renderImage(line, `image-${index}`)
+    const imageMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/u)
 
-      if (imageElement) {
-        elements.push(imageElement)
-      }
-
+    if (imageMatch) {
+      const [, alt, src] = imageMatch
+      blocks.push({ type: 'image', key: `image-${index}`, alt, src })
       index += 1
       continue
     }
@@ -95,14 +84,12 @@ function parseMarkdown(markdown: string) {
 
     if (headingMatch) {
       const [, hashes, content] = headingMatch
-      const level = Math.min(hashes.length, 6)
-      const Tag = `h${level}` as HeadingTag
-
-      elements.push(
-        <Tag key={`heading-${index}`} className={`markdown-heading markdown-heading-${level}`}>
-          {renderInline(content, `heading-${index}`)}
-        </Tag>,
-      )
+      blocks.push({
+        type: 'heading',
+        key: `heading-${index}`,
+        level: Math.min(hashes.length, 6),
+        content,
+      })
       index += 1
       continue
     }
@@ -115,13 +102,7 @@ function parseMarkdown(markdown: string) {
         index += 1
       }
 
-      elements.push(
-        <ul key={`list-${index}`} className="markdown-list">
-          {items.map((item, itemIndex) => (
-            <li key={`list-item-${index}-${itemIndex}`}>{renderInline(item, `list-${index}-${itemIndex}`)}</li>
-          ))}
-        </ul>,
-      )
+      blocks.push({ type: 'list', key: `list-${index}`, items })
       continue
     }
 
@@ -133,11 +114,11 @@ function parseMarkdown(markdown: string) {
         index += 1
       }
 
-      elements.push(
-        <blockquote key={`quote-${index}`} className="markdown-quote">
-          <p>{renderInline(joinParagraphLines(quoteLines), `quote-${index}`)}</p>
-        </blockquote>,
-      )
+      blocks.push({
+        type: 'quote',
+        key: `quote-${index}`,
+        content: joinParagraphLines(quoteLines),
+      })
       continue
     }
 
@@ -148,18 +129,122 @@ function parseMarkdown(markdown: string) {
       index += 1
     }
 
-    elements.push(
-      <p key={`paragraph-${index}`} className="markdown-paragraph">
-        {renderInline(joinParagraphLines(paragraphLines), `paragraph-${index}`)}
-      </p>,
+    blocks.push({
+      type: 'paragraph',
+      key: `paragraph-${index}`,
+      content: joinParagraphLines(paragraphLines),
+    })
+  }
+
+  return blocks
+}
+
+function renderBlock(block: MarkdownBlock) {
+  if (block.type === 'divider') {
+    return <hr key={block.key} className="markdown-divider" />
+  }
+
+  if (block.type === 'image') {
+    return (
+      <figure key={block.key} className="markdown-figure">
+        <img className="markdown-image" src={block.src} alt={block.alt || 'Imagem do projeto'} />
+        {block.alt ? <figcaption>{block.alt}</figcaption> : null}
+      </figure>
     )
   }
 
-  return elements
+  if (block.type === 'heading') {
+    const Tag = `h${block.level}` as HeadingTag
+
+    return (
+      <Tag key={block.key} className={`markdown-heading markdown-heading-${block.level}`}>
+        {renderInline(block.content, block.key)}
+      </Tag>
+    )
+  }
+
+  if (block.type === 'list') {
+    return (
+      <ul key={block.key} className="markdown-list">
+        {block.items.map((item, index) => (
+          <li key={`${block.key}-${index}`}>{renderInline(item, `${block.key}-${index}`)}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  if (block.type === 'quote') {
+    return (
+      <blockquote key={block.key} className="markdown-quote">
+        <p>{renderInline(block.content, block.key)}</p>
+      </blockquote>
+    )
+  }
+
+  return (
+    <p key={block.key} className="markdown-paragraph">
+      {renderInline(block.content, block.key)}
+    </p>
+  )
+}
+
+function renderAccordionSections(blocks: MarkdownBlock[]) {
+  const leadingBlocks: ReactNode[] = []
+  const sections: Array<{ heading: Extract<MarkdownBlock, { type: 'heading' }>; blocks: MarkdownBlock[] }> = []
+
+  let currentSection: { heading: Extract<MarkdownBlock, { type: 'heading' }>; blocks: MarkdownBlock[] } | null = null
+
+  blocks.forEach((block) => {
+    if (block.type === 'heading' && block.level === 2) {
+      currentSection = { heading: block, blocks: [] }
+      sections.push(currentSection)
+      return
+    }
+
+    if (currentSection) {
+      currentSection.blocks.push(block)
+      return
+    }
+
+    leadingBlocks.push(renderBlock(block))
+  })
+
+  return (
+    <>
+      {leadingBlocks}
+      <div className="markdown-accordion">
+        {sections.map((section, index) => (
+          <details
+            key={section.heading.key}
+            className="markdown-accordion-item"
+            open={index === 0}
+          >
+            <summary className="markdown-accordion-summary">
+              <span className="markdown-accordion-index">{String(index + 1).padStart(2, '0')}</span>
+              <span className="markdown-accordion-title">
+                {renderInline(section.heading.content, `${section.heading.key}-summary`)}
+              </span>
+              <span className="markdown-accordion-icon" aria-hidden="true">
+                +
+              </span>
+            </summary>
+
+            <div className="markdown-accordion-panel">
+              {section.blocks
+                .filter((block) => block.type !== 'divider')
+                .map((block) => renderBlock(block))}
+            </div>
+          </details>
+        ))}
+      </div>
+    </>
+  )
 }
 
 function MarkdownContent({ markdown }: MarkdownContentProps) {
-  return <div className="markdown-content">{parseMarkdown(markdown)}</div>
+  const blocks = parseBlocks(markdown)
+
+  return <div className="markdown-content">{renderAccordionSections(blocks)}</div>
 }
 
 export default MarkdownContent

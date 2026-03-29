@@ -1,12 +1,16 @@
 import {
+  SiBootstrap,
+  SiCss,
   SiDocker,
   SiDjango,
   SiFastapi,
   SiGit,
+  SiHtml5,
   SiJavascript,
   SiMysql,
   SiPython,
   SiReact,
+  SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si'
 import { FaLayerGroup } from 'react-icons/fa6'
@@ -36,6 +40,30 @@ const skills = [
     icon: SiReact,
     background: '#0B1F2A',
     color: '#61DAFB',
+  },
+  {
+    label: 'HTML',
+    icon: SiHtml5,
+    background: '#E34F26',
+    color: '#FFFFFF',
+  },
+  {
+    label: 'CSS',
+    icon: SiCss,
+    background: '#1572B6',
+    color: '#FFFFFF',
+  },
+  {
+    label: 'Bootstrap',
+    icon: SiBootstrap,
+    background: '#7C3AED',
+    color: '#FFFFFF',
+  },
+  {
+    label: 'Tailwind',
+    icon: SiTailwindcss,
+    background: '#0F172A',
+    color: '#38BDF8',
   },
   {
     label: 'JavaScript',
@@ -81,17 +109,29 @@ const skills = [
   },
 ]
 
+const featuredSkills = [
+  'Python',
+  'Django',
+  'React',
+  'JavaScript',
+  'TypeScript',
+  'HTML',
+  'CSS',
+  'Bootstrap',
+]
+
 function Skills() {
   return (
     <section className="skills-section" id="skills">
       <div className="skills-layout">
         <div className="skills-header">
-          <span className="skills-kicker">Skills</span>
           <h2 className="skills-title">Tecnologias e fundamentos que fazem parte do meu dia a dia.</h2>
         </div>
 
         <div className="skills-featured" aria-label="Tecnologias em destaque">
-          {skills.slice(0, 4).map(({ label, icon: Icon, background, color }) => (
+          {skills
+            .filter(({ label }) => featuredSkills.includes(label))
+            .map(({ label, icon: Icon, background, color }) => (
             <article
               key={label}
               className="skill-featured-pill"
@@ -100,7 +140,7 @@ function Skills() {
               <Icon aria-hidden="true" className="skill-featured-icon" />
               <span>{label}</span>
             </article>
-          ))}
+            ))}
         </div>
       </div>
 

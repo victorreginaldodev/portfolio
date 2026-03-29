@@ -3,145 +3,442 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Victor Reginaldo | Curriculo</title>
+    <title>Victor Reginaldo | Currículo</title>
     <style>
       :root {
-        --primary: #0b2b3a;
-        --secondary: #22d3a4;
-        --surface: #f4f8fa;
-        --text: #10202a;
-        --muted: #58707a;
-        --border: #d8e3e8;
+        --ink: #13212b;
+        --muted: #5b6b75;
+        --line: #d8e2e7;
+        --paper: #ffffff;
+        --surface: #f3f6f8;
+        --accent: #0f766e;
+        --accent-soft: #dff5f1;
+        --heading: #0b1620;
+      }
+
+      @page {
+        size: A4;
+        margin: 12mm;
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html,
       body {
         margin: 0;
-        padding: 40px 20px;
-        font-family: Arial, Helvetica, sans-serif;
         background: var(--surface);
-        color: var(--text);
+        color: var(--ink);
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       }
 
-      main {
-        max-width: 960px;
+      body {
+        padding: 24px;
+      }
+
+      .resume-page {
+        width: 210mm;
+        min-height: 297mm;
         margin: 0 auto;
-        background: #fff;
+        background: var(--paper);
+        box-shadow: 0 24px 60px rgba(19, 33, 43, 0.14);
+      }
+
+      .resume-layout {
+        display: grid;
+        grid-template-columns: 68mm 1fr;
+        min-height: 297mm;
+      }
+
+      .sidebar {
+        padding: 28px 24px 24px;
+        background:
+          radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 42%),
+          linear-gradient(180deg, #eef5f7 0%, #e9f0f3 100%);
+        border-right: 1px solid var(--line);
+      }
+
+      .main {
+        padding: 28px 30px 26px;
+      }
+
+      .photo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 18px;
+      }
+
+      .photo {
+        width: 148px;
+        height: 148px;
         border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 18px 60px rgba(16, 32, 42, 0.12);
+        object-fit: cover;
+        border: 4px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 30px rgba(15, 23, 32, 0.18);
       }
 
-      header {
-        padding: 40px;
-        color: #fff;
-        background: linear-gradient(135deg, #071923, var(--primary));
-      }
-
-      h1 {
-        margin: 0 0 10px;
-        font-size: 2.4rem;
-      }
-
-      h2 {
-        margin: 0 0 14px;
-        font-size: 1.2rem;
-        color: var(--primary);
-      }
-
+      h1,
+      h2,
+      h3,
       p,
-      li {
-        line-height: 1.7;
-      }
-
-      section {
-        padding: 32px 40px;
-        border-top: 1px solid var(--border);
-      }
-
       ul {
         margin: 0;
-        padding-left: 20px;
+      }
+
+      .name {
+        font-size: 2rem;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--heading);
+      }
+
+      .title {
+        margin-top: 8px;
+        font-size: 0.95rem;
+        line-height: 1.45;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .summary {
+        margin-top: 14px;
+        font-size: 0.92rem;
+        line-height: 1.62;
+        color: var(--muted);
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .section:first-child {
+        margin-top: 0;
+      }
+
+      .section-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .sidebar .section-title {
+        margin-bottom: 10px;
+      }
+
+      .contact-list,
+      .bullet-list {
+        padding-left: 18px;
+      }
+
+      .contact-list li,
+      .bullet-list li {
+        margin-bottom: 7px;
+        font-size: 0.9rem;
+        line-height: 1.48;
+      }
+
+      .contact-list li:last-child,
+      .bullet-list li:last-child {
+        margin-bottom: 0;
       }
 
       .muted {
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--muted);
       }
 
-      .pill {
-        display: inline-block;
-        margin-top: 16px;
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: rgba(34, 211, 164, 0.18);
-        color: #9ff1d8;
+      .skills-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .skill-group h3 {
+        margin-bottom: 5px;
+        font-size: 0.88rem;
+        color: var(--heading);
+      }
+
+      .skill-group p {
+        font-size: 0.86rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .experience-item {
+        padding-top: 15px;
+        margin-top: 15px;
+        border-top: 1px solid var(--line);
+      }
+
+      .experience-item:first-of-type {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: 0;
+      }
+
+      .experience-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+
+      .experience-head h3 {
+        font-size: 1.02rem;
+        line-height: 1.3;
+        color: var(--heading);
+      }
+
+      .company {
+        margin-top: 3px;
+        font-size: 0.9rem;
         font-weight: 700;
+        color: var(--accent);
+      }
+
+      .period {
+        flex-shrink: 0;
+        padding: 5px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .experience-text {
+        margin-bottom: 9px;
+        font-size: 0.89rem;
+        line-height: 1.58;
+        color: var(--muted);
+      }
+
+      .highlight-box {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(15, 118, 110, 0.02));
+      }
+
+      .highlight-box h3 {
+        margin-bottom: 8px;
+        font-size: 0.94rem;
+        color: var(--heading);
+      }
+
+      .highlight-box p {
+        font-size: 0.88rem;
+        line-height: 1.56;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: #6f7c84;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          background: #fff;
+        }
+
+        .resume-page {
+          box-shadow: none;
+          margin: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <header>
-        <h1>Victor Reginaldo</h1>
-        <p>Engenheiro de Software</p>
-        <p class="muted">
-          Backend, sistemas escalaveis, SaaS e solucoes B2B para Saude e
-          Seguranca do Trabalho.
-        </p>
-        <span class="pill">Curriculo web para download rapido</span>
-      </header>
+    <article class="resume-page">
+      <div class="resume-layout">
+        <aside class="sidebar">
+          <div class="photo-wrap">
+            <img class="photo" src="./victor-photo.jpeg" alt="Foto de Victor Reginaldo" />
+          </div>
 
-      <section>
-        <h2>Resumo profissional</h2>
-        <p>
-          Engenheiro de software com foco em desenvolvimento backend e sistemas
-          escalaveis, com experiencia na construcao de aplicacoes SaaS e
-          solucoes B2B.
-        </p>
-        <p>
-          Atua no desenvolvimento de sistemas para Saude e Seguranca do
-          Trabalho, criando solucoes que automatizam processos, organizam dados
-          e suportam analises tecnicas com foco em performance, organizacao e
-          escalabilidade.
-        </p>
-      </section>
+          <section class="section">
+            <div class="section-title">Contato</div>
+            <ul class="contact-list">
+              <li>Uberaba, MG • Brasil</li>
+              <li><a href="mailto:contato.victordev02@gmail.com">contato.victordev02@gmail.com</a></li>
+              <li><a href="tel:+5534996941992">(34) 9 9694-1992</a></li>
+            </ul>
+          </section>
 
-      <section>
-        <h2>Experiencia</h2>
-        <ul>
-          <li>
-            Engenheiro de Software na SSTSuite, com foco em ERP, SaaS, backend
-            e evolucao de regras de negocio.
-          </li>
-          <li>
-            Desenvolvedor de Software na Ergogroup, atuando em sistemas para
-            SST, ergonomia, AEP e analises tecnicas.
-          </li>
-        </ul>
-      </section>
+          <section class="section">
+            <div class="section-title">Qualificações</div>
+            <ul class="bullet-list">
+              <li>Modelagem de domínios complexos e regras de negócio</li>
+              <li>Criação de sistemas SaaS e arquiteturas multi-tenant</li>
+              <li>Automação de processos operacionais e técnicos</li>
+              <li>Entrega end-to-end com visão de produto e impacto</li>
+            </ul>
+          </section>
 
-      <section>
-        <h2>Stack principal</h2>
-        <ul>
-          <li>Python, Django, Django REST Framework e FastAPI</li>
-          <li>JavaScript, TypeScript, React e Vue.js</li>
-          <li>SQL, PostgreSQL, MySQL, Docker e arquitetura de software</li>
-        </ul>
-      </section>
+          <section class="section">
+            <div class="section-title">Stack</div>
+            <div class="skills-grid">
+              <div class="skill-group">
+                <h3>Backend</h3>
+                <p>Python, Django, APIs, arquitetura orientada a domínio</p>
+              </div>
+              <div class="skill-group">
+                <h3>Frontend</h3>
+                <p>React, TypeScript e interfaces para produtos digitais</p>
+              </div>
+              <div class="skill-group">
+                <h3>Dados e Infra</h3>
+                <p>MySQL, modelagem de dados e arquitetura modular</p>
+              </div>
+              <div class="skill-group">
+                <h3>Especialidades</h3>
+                <p>OpenXML, `python-docx`, geração documental e automação</p>
+              </div>
+            </div>
+          </section>
 
-      <section>
-        <h2>Contato</h2>
-        <ul>
-          <li>Uberaba - MG</li>
-          <li>contato.victordev02@gmail.com</li>
-          <li>(34) 9 9694-1992</li>
-          <li>LinkedIn: linkedin.com/in/seu-link</li>
-          <li>GitHub: github.com/seu-usuario</li>
-        </ul>
-      </section>
-    </main>
+          <section class="section">
+            <div class="section-title">Competências</div>
+            <ul class="bullet-list">
+              <li>Arquitetura de software</li>
+              <li>Sistemas SaaS</li>
+              <li>Automação de processos</li>
+              <li>Desenvolvimento backend</li>
+              <li>Integração entre áreas de negócio</li>
+              <li>Estruturação de produtos digitais</li>
+            </ul>
+          </section>
+        </aside>
+
+        <main class="main">
+          <section class="section">
+            <h1 class="name">Victor Reginaldo</h1>
+            <div class="title">Engenheiro de Software • Backend • SaaS • Produto</div>
+            <p class="summary">
+              Engenheiro de Software com foco em sistemas SaaS e soluções B2B, atuando na
+              construção de plataformas orientadas a negócio. Experiência prática em modelagem de
+              domínio, automação de processos, geração de documentos técnicos e desenvolvimento de
+              produtos para Saúde e Segurança do Trabalho.
+            </p>
+          </section>
+
+          <section class="section">
+            <div class="section-title">Resumo Profissional</div>
+            <p class="experience-text">
+              Atuo no desenvolvimento de software com forte orientação a negócio, estruturando
+              sistemas que transformam operações manuais em fluxos digitais mais previsíveis,
+              escaláveis e produtivos.
+            </p>
+            <p class="experience-text">
+              Minha experiência combina engenharia, produto e entendimento operacional,
+              especialmente em contextos onde o software precisa refletir regras complexas do
+              mundo real e gerar ganhos concretos para a empresa.
+            </p>
+          </section>
+
+          <section class="section">
+            <div class="section-title">Experiência Profissional</div>
+
+            <article class="experience-item">
+              <div class="experience-head">
+                <div>
+                  <h3>Cofundador &amp; Engenheiro de Software</h3>
+                  <div class="company">SSTSuite (SaaS)</div>
+                </div>
+                <div class="period">2025 - Atual</div>
+              </div>
+              <p class="experience-text">
+                Desenvolvimento de uma plataforma SaaS para Saúde e Segurança do Trabalho,
+                estruturando avaliações técnicas, análise de riscos ocupacionais e automação da
+                geração de documentos.
+              </p>
+              <ul class="bullet-list">
+                <li>Concepção do produto desde a ideia até a arquitetura da solução</li>
+                <li>Modelagem de domínio para múltiplos tipos de avaliações técnicas</li>
+                <li>Arquitetura modular e escalável com foco em crescimento do produto</li>
+                <li>Módulos como AEP, iluminância, gestão de riscos, plano de ação e dashboard</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <div class="experience-head">
+                <div>
+                  <h3>Engenheiro de Software</h3>
+                  <div class="company">Ergogroup Medicina e Segurança do Trabalho</div>
+                </div>
+                <div class="period">Set/2023 - Jan/2025</div>
+              </div>
+              <p class="experience-text">
+                Atuação em sistemas para automação de processos técnicos e operacionais de SST,
+                com foco em relatórios, análises ergonômicas e padronização de entregas.
+              </p>
+              <ul class="bullet-list">
+                <li>Automação de AEP e avaliações de iluminância</li>
+                <li>Fluxo digital para coleta de dados técnicos e geração de relatórios</li>
+                <li>Documentos complexos em Word com OpenXML e alto controle de formatação</li>
+                <li>Redução significativa do tempo operacional e do retrabalho manual</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <div class="experience-head">
+                <div>
+                  <h3>Desenvolvedor de Software</h3>
+                  <div class="company">Ergogroup Medicina e Segurança do Trabalho</div>
+                </div>
+                <div class="period">Set/2023 - Jan/2025</div>
+              </div>
+              <p class="experience-text">
+                Desenvolvimento de ERP interno para integrar comercial, técnico e financeiro em uma
+                operação digital unificada.
+              </p>
+              <ul class="bullet-list">
+                <li>Modelagem do fluxo operacional completo, da venda ao faturamento</li>
+                <li>Substituição de planilhas dispersas por uma plataforma centralizada</li>
+                <li>Automação de regras de negócio e integração com emissão fiscal</li>
+                <li>Mais previsibilidade, consistência operacional e controle do processo</li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="highlight-box">
+            <h3>Diferenciais</h3>
+            <p>
+              Forte capacidade de entender o negócio antes de propor a solução técnica, com
+              experiência em sistemas em produção que geram receita, reduzem custo e conectam
+              operação, produto e engenharia em uma única visão de execução.
+            </p>
+          </section>
+
+          <p class="footer-note">
+            Currículo preparado para download em PDF com layout otimizado para leitura em tela e
+            impressão.
+          </p>
+        </main>
+      </div>
+    </article>
   </body>
 </html>

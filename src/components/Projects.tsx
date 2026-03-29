@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { FaArrowRightLong, FaLayerGroup } from 'react-icons/fa6'
 import { TbHierarchy3 } from 'react-icons/tb'
 import {
@@ -35,55 +36,76 @@ function Projects() {
   return (
     <section className="projects-section" id="projetos">
       <div className="projects-header">
-        <span className="projects-kicker">Projetos</span>
-        <h2 className="projects-title">Projetos guiados por operação real, clareza de domínio e entrega consistente.</h2>
+        <h2 className="projects-title">Projetos reais em produção</h2>
         <p className="projects-subtitle">
-          Cada projeto abaixo abre uma página própria com contexto, decisões e impacto. Começando pelo
-          SSTSuite, a seção agora conecta a vitrine do portfólio aos conteúdos completos da sua
-          documentação.
+          Sistemas desenvolvidos do zero, com usuários ativos, conectando produto, regras de
+          negócio e operação.
         </p>
       </div>
 
       <div className="projects-grid" aria-label="Lista de projetos">
         {projects.map((project) => (
-          <article key={project.slug} className="project-card">
+          <article
+            key={project.slug}
+            className={`project-card${project.featuredLabel ? ' project-card-featured' : ''}`}
+          >
             <div className="project-preview">
               <img className="project-preview-media" src={project.image} alt={project.imageAlt} />
               <div className="project-preview-overlay" />
+              <div className="project-preview-meta">
+                <span className="project-preview-kicker">{project.eyebrow}</span>
+                {project.featuredLabel ? (
+                  <span className="project-preview-highlight">{project.featuredLabel}</span>
+                ) : null}
+              </div>
             </div>
 
             <div className="project-card-body">
-              <h3 className="project-card-title">{project.title}</h3>
-              <p className="project-card-description">{project.cardSummary}</p>
+              <div className="project-card-copy">
+                <div className="project-card-heading">
+                  <h3 className="project-card-title">{project.title}</h3>
+                  <span className="project-card-status">Em produção</span>
+                </div>
+                <p className="project-card-description">{project.cardSummary}</p>
+              </div>
 
-              <div className="project-card-tags" aria-label={`Stack principal do projeto ${project.title}`}>
-                {(project.cardStack ?? project.stack.slice(0, 3)).map((item) => (
-                  (() => {
+              <div className="project-card-footer">
+                <div
+                  className="project-card-tags"
+                  aria-label={`Stack principal do projeto ${project.title}`}
+                >
+                  {(project.cardStack ?? project.stack.slice(0, 4)).map((item) => {
                     const techStyle = techStyles[item as keyof typeof techStyles]
                     const Icon = techStyle?.icon
 
                     return (
                       <span
                         key={item}
-                        className="project-card-tag project-card-tag-colored"
-                        style={{
-                          backgroundColor: techStyle?.background ?? 'rgba(255, 255, 255, 0.03)',
-                          color: techStyle?.color ?? 'var(--text-title)',
-                        }}
+                        className="project-card-tag"
+                        style={
+                          {
+                            '--project-tag-accent': techStyle?.background ?? 'rgba(255, 255, 255, 0.12)',
+                            '--project-tag-color': techStyle?.color ?? 'var(--text-title)',
+                          } as CSSProperties
+                        }
                       >
-                        {Icon ? <Icon aria-hidden="true" className="project-card-tag-icon" /> : null}
+                        {Icon ? (
+                          <span className="project-card-tag-icon-shell">
+                            <Icon aria-hidden="true" className="project-card-tag-icon" />
+                          </span>
+                        ) : null}
                         <span>{item}</span>
                       </span>
                     )
-                  })()
-                ))}
-              </div>
+                  })}
+                </div>
 
-              <div className="project-card-actions">
-                <a className="project-link-button" href={`#/projetos/${project.slug}`}>
-                  <span>Ver página do projeto</span>
-                  <FaArrowRightLong aria-hidden="true" />
-                </a>
+                <div className="project-card-actions">
+                  <a className="project-link-button" href={`#/projetos/${project.slug}`}>
+                    <span>Ver detalhes do projeto</span>
+                    <FaArrowRightLong aria-hidden="true" />
+                  </a>
+                </div>
               </div>
             </div>
           </article>

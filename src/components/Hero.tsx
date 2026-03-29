@@ -14,11 +14,12 @@ function Hero() {
         <p className="hero-intro">Olá, eu sou</p>
         <h1 className="hero-title">Victor Reginaldo</h1>
         <p className="hero-support">
-          Desenvolvo sistemas que resolvem problemas reais de negócios.
+          Construo sistemas e plataformas SaaS que estruturam operações reais, integrando regras
+          de negócio, dados e automação.
         </p>
         <p className="hero-body">
-          Sou engenheiro de software com foco em backend e regras de negócios, atuando como
-          cofundador do SSTSuite, uma plataforma SaaS para área Saúde e Segurança do Trabalho.
+          Sou engenheiro de software com foco em backend e arquitetura, atuando como cofundador do
+          SSTSuite, uma plataforma SaaS para Saúde e Segurança do Trabalho.
         </p>
 
         <div className="hero-actions">
