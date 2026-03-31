@@ -20,36 +20,72 @@ function getTimestamp() {
   return `${date}-${time}`
 }
 
-function buildResumeMount(markup: string, styles: string) {
-  const mount = document.createElement('div')
-  mount.setAttribute('aria-hidden', 'true')
-  mount.style.position = 'fixed'
-  mount.style.left = '0'
-  mount.style.top = '0'
-  mount.style.opacity = '0'
-  mount.style.overflow = 'hidden'
-  mount.style.zIndex = '-1'
-  mount.style.pointerEvents = 'none'
-  mount.style.width = '210mm'
-  mount.style.padding = '0'
-  mount.style.margin = '0'
-  mount.innerHTML = `<style>${styles}</style>${markup}`
-  document.body.appendChild(mount)
-  return mount
+type ResumeFrame = {
+  documentNode: Document
+  frame: HTMLIFrameElement
 }
 
-async function waitForRender() {
-  await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()))
-  await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()))
+function isHtmlElement(node: Element | null): node is HTMLElement {
+  return Boolean(node) && node.nodeType === Node.ELEMENT_NODE
 }
 
-async function waitForFonts() {
-  if (!('fonts' in document)) {
+async function buildResumeMount(markup: string, styles: string): Promise<ResumeFrame> {
+  const frame = document.createElement('iframe')
+  frame.setAttribute('aria-hidden', 'true')
+  frame.tabIndex = -1
+  frame.style.position = 'fixed'
+  frame.style.left = '-10000px'
+  frame.style.top = '0'
+  frame.style.width = '210mm'
+  frame.style.height = '297mm'
+  frame.style.border = '0'
+  frame.style.opacity = '0'
+  frame.style.pointerEvents = 'none'
+  frame.style.background = '#ffffff'
+
+  document.body.appendChild(frame)
+
+  const documentNode = frame.contentDocument
+
+  if (!documentNode) {
+    frame.remove()
+    throw new Error('Nao foi possivel preparar a area de exportacao do curriculo.')
+  }
+
+  documentNode.open()
+  documentNode.write(`<!DOCTYPE html><html><head><meta charset="UTF-8" /><style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      width: 210mm;
+      min-height: 297mm;
+      overflow: hidden;
+    }
+    ${styles}
+  </style></head><body>${markup}</body></html>`)
+  documentNode.close()
+
+  await new Promise<void>((resolve) => {
+    frame.onload = () => resolve()
+    window.setTimeout(() => resolve(), 50)
+  })
+
+  return { documentNode, frame }
+}
+
+async function waitForRender(targetWindow: Window) {
+  await new Promise<void>((resolve) => targetWindow.requestAnimationFrame(() => resolve()))
+  await new Promise<void>((resolve) => targetWindow.requestAnimationFrame(() => resolve()))
+}
+
+async function waitForFonts(documentNode: Document) {
+  if (!('fonts' in documentNode)) {
     return
   }
 
   try {
-    await document.fonts.ready
+    await documentNode.fonts.ready
   } catch {
     // Continue even when the browser cannot report font readiness.
   }
@@ -111,58 +147,51 @@ export async function downloadResumePdf() {
     .map((node) => node.textContent ?? '')
     .join('\n')
 
-  const resumePage = documentNode.querySelector('.resume-page')
+  const resumePages = Array.from(documentNode.querySelectorAll('.resume-page'))
 
-  if (!resumePage) {
+  if (!resumePages.length) {
     throw new Error('Estrutura do curriculo nao encontrada no HTML.')
   }
 
   const tempWrapper = document.createElement('div')
-  tempWrapper.innerHTML = resumePage.outerHTML.replaceAll('src="./', 'src="/')
+  tempWrapper.innerHTML = documentNode.body.innerHTML.replaceAll('src="./', `src="${window.location.origin}/`)
   const markup = tempWrapper.innerHTML
-  const mount = buildResumeMount(markup, styleMarkup)
+  const mount = await buildResumeMount(markup, styleMarkup)
 
   try {
-    const target = mount.querySelector('.resume-page')
+    const frameWindow = mount.frame.contentWindow
+    const targets = Array.from(mount.documentNode.querySelectorAll('.resume-page'))
 
-    if (!(target instanceof HTMLElement)) {
+    if (!targets.length || !frameWindow) {
       throw new Error('Nao foi possivel montar o curriculo para exportacao.')
     }
 
-    const layout = target.querySelector('.resume-layout')
+    await waitForFonts(mount.documentNode)
+    await Promise.all(
+      targets.map(async (target) => {
+        if (!isHtmlElement(target)) {
+          return
+        }
 
-    target.style.boxShadow = 'none'
-    target.style.margin = '0'
-    target.style.background = '#ffffff'
-    target.style.width = '210mm'
-    target.style.minHeight = '297mm'
-    target.style.height = '297mm'
-    target.style.overflow = 'hidden'
+        const layout = target.querySelector('.resume-layout')
 
-    if (layout instanceof HTMLElement) {
-      layout.style.minHeight = '297mm'
-      layout.style.height = '297mm'
-    }
+        target.style.boxShadow = 'none'
+        target.style.margin = '0'
+        target.style.background = '#ffffff'
+        target.style.width = '210mm'
+        target.style.minHeight = '297mm'
+        target.style.height = '297mm'
+        target.style.overflow = 'hidden'
 
-    await waitForFonts()
-    await waitForImages(target)
-    await waitForRender()
+        if (isHtmlElement(layout)) {
+          layout.style.minHeight = '297mm'
+          layout.style.height = '297mm'
+        }
 
-    const captureWidth = target.offsetWidth
-    const captureHeight = target.offsetHeight
-
-    const canvas = await html2canvas(target, {
-      backgroundColor: '#f3f6f8',
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      scrollX: 0,
-      scrollY: 0,
-      width: captureWidth,
-      height: captureHeight,
-      windowWidth: captureWidth,
-      windowHeight: captureHeight,
-    })
+        await waitForImages(target)
+      }),
+    )
+    await waitForRender(frameWindow)
 
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -173,12 +202,38 @@ export async function downloadResumePdf() {
 
     const pageWidth = pdf.internal.pageSize.getWidth()
     const pageHeight = pdf.internal.pageSize.getHeight()
-    const imageData = canvas.toDataURL('image/png')
 
-    pdf.addImage(imageData, 'PNG', 0, 0, pageWidth, pageHeight)
+    for (const [index, target] of targets.entries()) {
+      if (!isHtmlElement(target)) {
+        continue
+      }
+
+      const captureWidth = target.offsetWidth
+      const captureHeight = target.offsetHeight
+
+      const canvas = await html2canvas(target, {
+        backgroundColor: '#f3f6f8',
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        scrollX: 0,
+        scrollY: 0,
+        width: captureWidth,
+        height: captureHeight,
+        windowWidth: captureWidth,
+        windowHeight: captureHeight,
+      })
+
+      if (index > 0) {
+        pdf.addPage()
+      }
+
+      const imageData = canvas.toDataURL('image/png')
+      pdf.addImage(imageData, 'PNG', 0, 0, pageWidth, pageHeight)
+    }
 
     downloadBlob(pdf.output('blob'))
   } finally {
-    mount.remove()
+    mount.frame.remove()
   }
 }

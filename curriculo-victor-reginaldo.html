@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Victor Reginaldo | Currículo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #13212b;
+        --muted: #526370;
+        --line: #dce6eb;
+        --paper: #ffffff;
+        --surface: #edf2f5;
+        --accent: #0d6b63;
+        --accent-mid: #0f8a80;
+        --accent-soft: #e0f5f2;
+        --accent-glow: rgba(13, 107, 99, 0.08);
+        --heading: #0a1620;
+        --tag-bg: #f0f5f7;
+        --tag-text: #3d5560;
+      }
+
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        background: var(--surface);
+        color: var(--ink);
+        font-family: 'DM Sans', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body { padding: 28px; }
+
+      .resume-page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: var(--paper);
+        box-shadow: 0 32px 80px rgba(10, 22, 32, 0.14), 0 2px 8px rgba(10, 22, 32, 0.06);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      /* ── LAYOUT ─────────────────────────────── */
+      .resume-layout {
+        display: grid;
+        grid-template-columns: 76mm 1fr;
+        min-height: 297mm;
+      }
+
+      /* ── SIDEBAR ─────────────────────────────── */
+      .sidebar {
+        padding: 24px 18px 24px 20px;
+        background: linear-gradient(160deg, #f2f7fa 0%, #eaf0f4 100%);
+        border-right: 1px solid var(--line);
+        position: relative;
+      }
+
+      .sidebar::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-mid), #14b8a8);
+      }
+
+      /* ── MAIN ─────────────────────────────── */
+      .main {
+        padding: 24px 26px 24px;
+        position: relative;
+      }
+
+      .main::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-mid), #14b8a8);
+      }
+
+      /* ── PHOTO ─────────────────────────────── */
+      .photo-wrap {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 16px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 3px solid #fff;
+        box-shadow: 0 8px 24px rgba(13, 107, 99, 0.18), 0 2px 6px rgba(10, 22, 32, 0.1);
+      }
+
+      .photo {
+        width: 100%; height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      /* ── TYPOGRAPHY ─────────────────────────── */
+      h1, h2, h3, p, ul { margin: 0; }
+
+      .name {
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1.0;
+        letter-spacing: -0.04em;
+        color: var(--heading);
+      }
+
+      .title {
+        margin-top: 5px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        font-family: 'DM Mono', monospace;
+      }
+
+      .summary {
+        margin-top: 9px;
+        font-size: 0.87rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      /* ── SECTION TITLES ─────────────────────── */
+      .section { margin-top: 18px; }
+      .section:first-child { margin-top: 0; }
+
+      .section-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-family: 'DM Mono', monospace;
+      }
+
+      /* ── CONTACT ─────────────────────────────── */
+      .contact-list {
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        color: var(--ink);
+      }
+
+      .contact-list li:last-child { margin-bottom: 0; }
+
+      .contact-icon {
+        width: 16px; height: 16px;
+        flex-shrink: 0;
+        color: var(--accent);
+      }
+
+      .contact-icon svg {
+        width: 100%; height: 100%;
+        display: block;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .contact-icon.brand svg { fill: currentColor; stroke: none; }
+
+      a { color: inherit; text-decoration: none; }
+
+      /* ── SKILLS ─────────────────────────────── */
+      .skills-grid { display: grid; gap: 9px; }
+
+      .skill-group h3 {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--heading);
+        margin-bottom: 2px;
+      }
+
+      .skill-group p {
+        font-size: 0.80rem;
+        line-height: 1.42;
+        color: var(--muted);
+      }
+
+      /* ── TAGS ─────────────────────────────── */
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 2px;
+      }
+
+      .tag {
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        font-size: 0.74rem;
+        font-weight: 600;
+        font-family: 'DM Mono', monospace;
+        border: 1px solid var(--line);
+      }
+
+      .tag.accent {
+        background: var(--accent-soft);
+        color: var(--accent);
+        border-color: rgba(13, 107, 99, 0.2);
+      }
+
+      /* ── BULLET LIST ─────────────────────────── */
+      .bullet-list {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .bullet-list li {
+        margin-bottom: 5px;
+        font-size: 0.83rem;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .bullet-list li:last-child { margin-bottom: 0; }
+
+      /* ── EXPERIENCE ─────────────────────────── */
+      .experience-item {
+        padding-top: 13px;
+        margin-top: 13px;
+        border-top: 1px solid var(--line);
+      }
+
+      .experience-item:first-of-type {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: 0;
+      }
+
+      .experience-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+
+      .experience-head h3 {
+        font-size: 0.96rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--heading);
+      }
+
+      .company {
+        margin-top: 2px;
+        font-size: 0.83rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .period {
+        flex-shrink: 0;
+        padding: 3px 9px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 0.69rem;
+        font-weight: 600;
+        color: var(--muted);
+        white-space: nowrap;
+        font-family: 'DM Mono', monospace;
+        background: var(--tag-bg);
+      }
+
+      .experience-text {
+        margin-bottom: 7px;
+        font-size: 0.84rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* ── HIGHLIGHT / BADGE ─────────────────── */
+      .highlight-box {
+        margin-top: 16px;
+        padding: 13px 16px;
+        border: 1px solid rgba(13, 107, 99, 0.18);
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(13, 107, 99, 0.06), rgba(20, 184, 166, 0.03));
+      }
+
+      .highlight-box h3 {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--heading);
+        margin-bottom: 5px;
+      }
+
+      .highlight-box p {
+        font-size: 0.83rem;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      /* ── EDUCATION ─────────────────────────── */
+      .edu-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .edu-item h3 {
+        font-size: 0.87rem;
+        font-weight: 700;
+        color: var(--heading);
+        line-height: 1.25;
+      }
+
+      .edu-item p {
+        margin-top: 2px;
+        font-size: 0.80rem;
+        color: var(--muted);
+      }
+
+      .edu-badge {
+        flex-shrink: 0;
+        padding: 3px 9px;
+        background: #fff8e6;
+        border: 1px solid #f0d070;
+        border-radius: 999px;
+        font-size: 0.67rem;
+        font-weight: 700;
+        color: #9a6f00;
+        white-space: nowrap;
+        font-family: 'DM Mono', monospace;
+      }
+
+      /* ── DIVIDER ─────────────────────────────── */
+      .divider {
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 14px 0;
+      }
+
+      /* ── PRINT ─────────────────────────────── */
+      @media print {
+        body { padding: 0; background: #fff; }
+        .resume-page { box-shadow: none; margin: 0; border-radius: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="resume-page">
+      <div class="resume-layout">
+
+        <!-- ── SIDEBAR ── -->
+        <aside class="sidebar">
+
+          <div class="photo-wrap">
+            <img class="photo" src="./victor-photo.jpeg" alt="Foto de Victor Reginaldo" />
+          </div>
+
+          <!-- CONTATO -->
+          <section class="section">
+            <div class="section-title">Contato</div>
+            <ul class="contact-list">
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M4 7l8 6 8-6"></path></svg>
+                </span>
+                <a href="mailto:contato.victordev02@gmail.com">contato.victordev02@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8 9.68a16 16 0 0 0 6.32 6.32l1.23-1.28a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z"></path></svg>
+                </span>
+                <a href="tel:+5534996941992">(34) 9 9694-1992</a>
+              </li>
+              <li>
+                <span class="contact-icon brand" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.8.5 12.34c0 5.23 3.3 9.67 7.88 11.24.58.11.79-.26.79-.57 0-.28-.01-1.2-.02-2.18-3.21.72-3.89-1.4-3.89-1.4-.53-1.37-1.3-1.73-1.3-1.73-1.06-.75.08-.73.08-.73 1.17.08 1.79 1.24 1.79 1.24 1.04 1.83 2.73 1.3 3.39 1 .11-.77.41-1.3.74-1.6-2.56-.3-5.24-1.31-5.24-5.84 0-1.29.45-2.34 1.18-3.16-.12-.3-.51-1.5.11-3.12 0 0 .97-.32 3.19 1.21A10.8 10.8 0 0 1 12 5.95c.96 0 1.93.13 2.84.38 2.21-1.53 3.18-1.21 3.18-1.21.63 1.62.24 2.82.12 3.12.74.82 1.18 1.87 1.18 3.16 0 4.54-2.69 5.53-5.26 5.83.42.37.79 1.08.79 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.8.57 4.57-1.57 7.86-6.01 7.86-11.23C23.5 5.8 18.35.5 12 .5z"></path></svg>
+                </span>
+                <a href="https://github.com/victorreginaldodev" target="_blank" rel="noreferrer">github.com/victorreginaldodev</a>
+              </li>
+              <li>
+                <span class="contact-icon brand" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46a2.48 2.48 0 0 0-.02-4.96zM3 9.75h4v11.75H3zm7.25 0H14v1.6h.05c.52-.98 1.78-2.02 3.66-2.02 3.91 0 4.64 2.67 4.64 6.14v6.03h-4v-5.35c0-1.28-.02-2.93-1.73-2.93-1.74 0-2 1.4-2 2.84v5.44h-4z"></path></svg>
+                </span>
+                <a href="https://www.linkedin.com/in/devvictor01/" target="_blank" rel="noreferrer">linkedin.com/in/devvictor01</a>
+              </li>
+            </ul>
+          </section>
+
+          <!-- STACK -->
+          <section class="section">
+            <div class="section-title">Stack</div>
+            <div class="skills-grid">
+              <div class="skill-group">
+                <h3>Backend</h3>
+                <div class="tag-list">
+                  <span class="tag accent">Python</span>
+                  <span class="tag accent">Django</span>
+                  <span class="tag">APIs REST</span>
+                  <span class="tag">python-docx</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3>Frontend</h3>
+                <div class="tag-list">
+                  <span class="tag">React</span>
+                  <span class="tag">TypeScript</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3>Dados & Infra</h3>
+                <div class="tag-list">
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Modelagem de dados</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <h3>Especialidades</h3>
+                <div class="tag-list">
+                  <span class="tag">OpenXML</span>
+                  <span class="tag">Automação</span>
+                  <span class="tag">Arquitetura SaaS</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- COMPETÊNCIAS -->
+          <section class="section">
+            <div class="section-title">Competências</div>
+            <ul class="bullet-list">
+              <li>Arquitetura modular e escalável</li>
+              <li>Modelagem de domínio e regras de negócio</li>
+              <li>Desenvolvimento de sistemas SaaS</li>
+              <li>Automação de processos técnicos</li>
+              <li>Geração automatizada de documentos</li>
+              <li>Integração entre negócio e tecnologia</li>
+            </ul>
+          </section>
+
+          <!-- FORMAÇÃO -->
+          <section class="section">
+            <div class="section-title">Formação</div>
+            <div class="edu-item">
+              <div>
+                <h3>Análise e Desenvolvimento de Sistemas</h3>
+                <p>Em andamento</p>
+              </div>
+              <span class="edu-badge">Cursando</span>
+            </div>
+          </section>
+
+        </aside>
+
+        <!-- ── MAIN ── -->
+        <main class="main">
+
+          <!-- HEADER -->
+          <section class="section" style="margin-top:0">
+            <h1 class="name">Victor Reginaldo</h1>
+            <div class="title">Desenvolvedor Backend Python · Django · APIs REST</div>
+            <p class="summary">
+              Desenvolvedor Backend com mais de 2 anos de experiência em Python e Django, atuando no desenvolvimento de sistemas SaaS do zero à produção.
+            </p>
+            <p class="summary" style="margin-top:5px">
+              Especializado em modelagem de domínio, automação de processos e arquitetura modular — com histórico comprovado em ambiente real de negócio, especialmente na área de Saúde e Segurança do Trabalho.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- RESUMO PROFISSIONAL -->
+          <section class="section">
+            <div class="section-title">Resumo Profissional</div>
+            <p class="experience-text">
+              Experiência prática na construção de sistemas que substituem processos manuais por fluxos digitais organizados e escaláveis. Atua conectando engenharia, produto e operação — traduzindo regras de negócio em soluções backend confiáveis, desde a modelagem do banco de dados até a geração automatizada de documentos.
+            </p>
+          </section>
+
+          <!-- EXPERIÊNCIA -->
+          <section class="section">
+            <div class="section-title">Experiência Profissional</div>
+
+            <article class="experience-item">
+              <div class="experience-head">
+                <div>
+                  <h3>Cofundador & Engenheiro de Software</h3>
+                  <div class="company">SSTSuite — Plataforma SaaS B2B</div>
+                </div>
+                <div class="period">2025 – Atual</div>
+              </div>
+              <p class="experience-text">
+                Concepção, arquitetura e desenvolvimento de uma plataforma SaaS para Saúde e Segurança do Trabalho, atualmente com <strong>30 clientes ativos em produção</strong>.
+              </p>
+              <ul class="bullet-list">
+                <li>Desenvolvimento do produto do zero: da ideia à arquitetura até a operação em produção</li>
+                <li>Modelagem de domínio para diferentes tipos de avaliações técnicas (AEP, iluminância)</li>
+                <li>Estruturação de arquitetura modular em Django voltada à evolução e escalabilidade</li>
+                <li>Implementação de dashboard analítico e módulos de geração automatizada de relatórios</li>
+                <li>Gestão do ciclo completo: backend, integrações e entrega ao cliente final</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <div class="experience-head">
+                <div>
+                  <h3>Engenheiro de Software</h3>
+                  <div class="company">Ergogroup Medicina e Segurança do Trabalho</div>
+                </div>
+                <div class="period">Set/2023 – Jan/2025</div>
+              </div>
+              <p class="experience-text">
+                Desenvolvimento de sistemas internos para suportar a operação técnica e administrativa da empresa, substituindo processos manuais baseados em planilhas por fluxos digitais integrados.
+              </p>
+              <ul class="bullet-list">
+                <li>Automação de avaliações técnicas (AEP e iluminância), reduzindo tempo de entrega de dias para minutos</li>
+                <li>Geração de documentos Word complexos com python-docx e OpenXML</li>
+                <li>Modelagem do fluxo operacional completo — do cadastro ao faturamento</li>
+                <li>Centralização de processos antes distribuídos em planilhas, eliminando retrabalho operacional</li>
+                <li>Automação de regras de negócio e integração com emissão fiscal</li>
+              </ul>
+            </article>
+
+          </section>
+
+          <!-- DIFERENCIAIS -->
+          <div class="highlight-box">
+            <h3>Diferenciais</h3>
+            <p>
+              Combina visão técnica de backend com entendimento do negócio — capaz de modelar domínios complexos, construir sistemas que vão à produção e evoluir produtos com impacto mensurável. Experiência real como cofundador de SaaS com clientes ativos.
+            </p>
+          </div>
+
+        </main>
+      </div>
+    </article>
+  </body>
+</html>

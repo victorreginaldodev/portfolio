@@ -34,7 +34,7 @@
       }
 
       body {
-        padding: 24px;
+        padding: 20px;
       }
 
       .resume-page {
@@ -42,17 +42,17 @@
         min-height: 297mm;
         margin: 0 auto;
         background: var(--paper);
-        box-shadow: 0 24px 60px rgba(19, 33, 43, 0.14);
+        box-shadow: 0 20px 48px rgba(19, 33, 43, 0.12);
       }
 
       .resume-layout {
         display: grid;
-        grid-template-columns: 80mm 1fr;
+        grid-template-columns: 79mm 1fr;
         min-height: 297mm;
       }
 
       .sidebar {
-        padding: 22px 20px 20px;
+        padding: 18px 18px 16px;
         background:
           radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 42%),
           linear-gradient(180deg, #eef5f7 0%, #e9f0f3 100%);
@@ -60,21 +60,19 @@
       }
 
       .main {
-        padding: 22px 24px 20px;
+        padding: 18px 20px 16px;
       }
 
       .photo-wrap {
         display: flex;
         justify-content: center;
-        margin-bottom: 14px;
-        width: 132px;
-        height: 132px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 12px;
+        width: 120px;
+        height: 120px;
         overflow: hidden;
-        border-radius: 24px;
+        border-radius: 22px;
         border: 4px solid rgba(255, 255, 255, 0.95);
-        box-shadow: 0 12px 30px rgba(15, 23, 32, 0.18);
+        box-shadow: 0 10px 26px rgba(15, 23, 32, 0.16);
       }
 
       .photo {
@@ -94,16 +92,16 @@
       }
 
       .name {
-        font-size: 1.86rem;
+        font-size: 1.72rem;
         line-height: 1.05;
         letter-spacing: -0.03em;
         color: var(--heading);
       }
 
       .title {
-        margin-top: 6px;
-        font-size: 0.9rem;
-        line-height: 1.35;
+        margin-top: 5px;
+        font-size: 0.82rem;
+        line-height: 1.3;
         color: var(--accent);
         font-weight: 700;
         text-transform: uppercase;
@@ -111,14 +109,14 @@
       }
 
       .summary {
-        margin-top: 10px;
-        font-size: 0.88rem;
-        line-height: 1.5;
+        margin-top: 8px;
+        font-size: 0.84rem;
+        line-height: 1.42;
         color: var(--muted);
       }
 
       .section {
-        margin-top: 18px;
+        margin-top: 14px;
       }
 
       .section:first-child {
@@ -129,35 +127,20 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 10px;
-        padding: 6px 11px;
+        margin-bottom: 8px;
+        padding: 5px 10px;
         border-radius: 999px;
         background: var(--accent-soft);
         color: var(--accent);
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      .sidebar .section-title {
-        margin-bottom: 8px;
-      }
-
       .contact-list,
       .bullet-list {
-        padding-left: 18px;
-      }
-
-      .contact-list li,
-      .bullet-list li {
-        margin-bottom: 5px;
-        font-size: 0.86rem;
-        line-height: 1.4;
-      }
-
-      .contact-list li {
-        white-space: nowrap;
+        padding-left: 16px;
       }
 
       .contact-list {
@@ -165,15 +148,23 @@
         list-style: none;
       }
 
+      .contact-list li,
+      .bullet-list li {
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+        line-height: 1.34;
+      }
+
       .contact-list li {
         display: flex;
         align-items: center;
         gap: 8px;
+        white-space: nowrap;
       }
 
       .contact-icon {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         flex-shrink: 0;
         color: var(--accent);
       }
@@ -199,30 +190,26 @@
         margin-bottom: 0;
       }
 
-      .muted {
-        color: var(--muted);
-      }
-
       .skills-grid {
         display: grid;
-        gap: 10px;
+        gap: 8px;
       }
 
       .skill-group h3 {
-        margin-bottom: 3px;
-        font-size: 0.84rem;
+        margin-bottom: 2px;
+        font-size: 0.8rem;
         color: var(--heading);
       }
 
       .skill-group p {
-        font-size: 0.82rem;
-        line-height: 1.42;
+        font-size: 0.77rem;
+        line-height: 1.32;
         color: var(--muted);
       }
 
       .experience-item {
-        padding-top: 12px;
-        margin-top: 12px;
+        padding-top: 10px;
+        margin-top: 10px;
         border-top: 1px solid var(--line);
       }
 
@@ -236,66 +223,88 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 6px;
+        gap: 10px;
+        margin-bottom: 5px;
       }
 
       .experience-head h3 {
-        font-size: 0.98rem;
-        line-height: 1.22;
+        font-size: 0.92rem;
+        line-height: 1.18;
         color: var(--heading);
       }
 
       .company {
         margin-top: 2px;
-        font-size: 0.86rem;
+        font-size: 0.8rem;
         font-weight: 700;
         color: var(--accent);
       }
 
       .period {
         flex-shrink: 0;
-        padding: 4px 9px;
+        padding: 4px 8px;
         border: 1px solid var(--line);
         border-radius: 999px;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 700;
         color: var(--muted);
         white-space: nowrap;
       }
 
       .experience-text {
-        margin-bottom: 7px;
-        font-size: 0.85rem;
-        line-height: 1.45;
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+        line-height: 1.34;
         color: var(--muted);
       }
 
       .highlight-box {
-        margin-top: 14px;
-        padding: 14px 16px;
+        margin-top: 12px;
+        padding: 12px 14px;
         border: 1px solid var(--line);
-        border-radius: 18px;
+        border-radius: 16px;
         background: linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(15, 118, 110, 0.02));
       }
 
       .highlight-box h3 {
-        margin-bottom: 6px;
-        font-size: 0.9rem;
+        margin-bottom: 5px;
+        font-size: 0.84rem;
         color: var(--heading);
       }
 
       .highlight-box p {
-        font-size: 0.84rem;
-        line-height: 1.42;
+        font-size: 0.79rem;
+        line-height: 1.34;
         color: var(--muted);
       }
 
-      .footer-note {
-        margin-top: 18px;
-        font-size: 0.75rem;
-        line-height: 1.4;
-        color: #6f7c84;
+      .education-card {
+        padding: 12px 12px 10px;
+        border: 1px solid rgba(15, 118, 110, 0.16);
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.46));
+        box-shadow: 0 8px 20px rgba(15, 23, 32, 0.05);
+      }
+
+      .education-course {
+        font-size: 0.86rem;
+        line-height: 1.34;
+        font-weight: 700;
+        color: var(--heading);
+      }
+
+      .education-status {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 8px;
+        padding: 4px 9px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
 
       a {
@@ -366,10 +375,10 @@
           <section class="section">
             <div class="section-title">Qualificações</div>
             <ul class="bullet-list">
-              <li>Modelagem de domínios e regras de negócio orientadas à realidade operacional</li>
-              <li>Desenvolvimento de sistemas SaaS com arquitetura modular e escalável</li>
-              <li>Automação de processos técnicos e administrativos</li>
-              <li>Entrega de soluções completas com visão de produto e impacto no negócio</li>
+              <li>Mais de 2 anos construindo sistemas backend com Python e Django</li>
+              <li>Desenvolvimento de plataformas SaaS do zero até produção</li>
+              <li>Modelagem de domínio e automação de processos orientadas ao negócio</li>
+              <li>Arquitetura modular voltada à evolução e escalabilidade</li>
             </ul>
           </section>
 
@@ -377,60 +386,44 @@
             <div class="section-title">Stack</div>
             <div class="skills-grid">
               <div class="skill-group">
-                <h3>Backend</h3>
-                <p>Python, Django, APIs REST e modelagem de domínio</p>
+                <h3>Backend Python</h3>
+                <p>Python, Django, DRF, APIs REST e arquitetura backend</p>
               </div>
               <div class="skill-group">
                 <h3>Frontend</h3>
-                <p>React, TypeScript e construção de interfaces</p>
+                <p>React, TypeScript e integração de interfaces com produtos SaaS</p>
               </div>
               <div class="skill-group">
                 <h3>Dados e Infra</h3>
-                <p>MySQL, modelagem de dados e organização de sistemas</p>
+                <p>MySQL, modelagem de dados e estruturação de fluxos operacionais</p>
               </div>
               <div class="skill-group">
                 <h3>Especialidades</h3>
-                <p>OpenXML, python-docx e geração automatizada de documentos</p>
+                <p>python-docx, OpenXML, automação e geração automatizada de documentos</p>
               </div>
             </div>
           </section>
 
           <section class="section">
-            <div class="section-title">Competências</div>
-            <ul class="bullet-list">
-              <li>Arquitetura de software</li>
-              <li>Desenvolvimento de sistemas SaaS</li>
-              <li>Automação de processos</li>
-              <li>Desenvolvimento backend</li>
-              <li>Integração entre negócio e tecnologia</li>
-              <li>Estruturação de produtos digitais</li>
-            </ul>
+            <div class="section-title">Formação</div>
+            <div class="education-card">
+              <p class="education-course">Tecnólogo em Análise e Desenvolvimento de Sistemas</p>
+              <div class="education-status">Ensino superior em andamento</div>
+            </div>
           </section>
         </aside>
 
         <main class="main">
           <section class="section">
             <h1 class="name">Victor Reginaldo</h1>
-            <div class="title">Engenheiro de Software • Backend • SaaS • Produto</div>
+            <div class="title">Desenvolvedor Backend • Python • Django • DRF • APIs REST</div>
             <p class="summary">
-              Engenheiro de Software com experiência no desenvolvimento de sistemas SaaS e soluções B2B,
-              com foco na construção de plataformas orientadas a negócio.
+              Desenvolvedor backend com mais de 2 anos de experiência em Python, Django e DRF,
+              atuando no desenvolvimento de sistemas SaaS do zero até produção.
             </p>
             <p class="summary">
-              Atua na modelagem de domínio, automação de processos e desenvolvimento de soluções que
-              estruturam e organizam operações reais, especialmente na área de Saúde e Segurança do Trabalho.
-            </p>
-          </section>
-
-          <section class="section">
-            <div class="section-title">Resumo Profissional</div>
-            <p class="experience-text">
-              Experiência no desenvolvimento de sistemas que substituem processos manuais por fluxos digitais
-              mais organizados, previsíveis e escaláveis.
-            </p>
-            <p class="experience-text">
-              Atua conectando engenharia, produto e operação, traduzindo regras de negócio em soluções
-              confiáveis e alinhadas às necessidades reais da empresa.
+              Especializado em modelagem de domínio, automação de processos e arquitetura modular,
+              com experiência real em negócio na área de Saúde e Segurança do Trabalho.
             </p>
           </section>
 
@@ -441,19 +434,21 @@
               <div class="experience-head">
                 <div>
                   <h3>Cofundador & Engenheiro de Software</h3>
-                  <div class="company">SSTSuite (SaaS)</div>
+                  <div class="company">SSTSuite — Plataforma SaaS B2B</div>
                 </div>
                 <div class="period">2025 - Atual</div>
               </div>
               <p class="experience-text">
-                Desenvolvimento de uma plataforma SaaS para Saúde e Segurança do Trabalho,
-                estruturando processos técnicos, avaliações e geração de documentos.
+                Concepção, arquitetura e desenvolvimento de uma plataforma SaaS para Saúde e Segurança do Trabalho,
+                atualmente com 30 clientes ativos em produção.
               </p>
               <ul class="bullet-list">
-                <li>Concepção e desenvolvimento do produto desde a ideia até a arquitetura</li>
-                <li>Modelagem de domínio para diferentes tipos de avaliações técnicas</li>
-                <li>Estruturação de arquitetura modular voltada à evolução do sistema</li>
-                <li>Implementação de módulos como AEP, iluminância e dashboard analítico</li>
+                <li>Desenvolvimento do produto do zero: da ideia à arquitetura e operação</li>
+                <li>Modelagem de domínio para avaliações técnicas como AEP e iluminância</li>
+                <li>Desenvolvimento de APIs REST com Django REST Framework para integração entre frontend e backend</li>
+                <li>Construção de interfaces com React e TypeScript para operação dos módulos da plataforma</li>
+                <li>Estruturação de arquitetura modular em Django voltada à escalabilidade</li>
+                <li>Implementação de dashboard analítico e geração automatizada de relatórios</li>
               </ul>
             </article>
 
@@ -466,14 +461,15 @@
                 <div class="period">Set/2023 - Jan/2025</div>
               </div>
               <p class="experience-text">
-                Desenvolvimento de sistemas internos para suportar a operação técnica e administrativa da empresa.
+                Desenvolvimento de sistemas internos para suportar a operação técnica e administrativa,
+                substituindo processos manuais e planilhas por fluxos digitais integrados.
               </p>
               <ul class="bullet-list">
-                <li>Automação de avaliações técnicas como AEP e iluminância</li>
-                <li>Estruturação do fluxo digital de coleta de dados e geração de relatórios</li>
-                <li>Geração de documentos complexos em Word com Python-docx</li>
-                <li>Modelagem do fluxo operacional do início ao faturamento</li>
-                <li>Centralização de processos anteriormente baseados em planilhas</li>
+                <li>Automação de avaliações técnicas, reduzindo o tempo de entrega de dias para minutos</li>
+                <li>Construção de APIs com DRF para consumo interno das aplicações</li>
+                <li>Construção de interfaces com React e TypeScript para uso interno das aplicações</li>
+                <li>Geração de documentos complexos em Word com python-docx e OpenXML</li>
+                <li>Modelagem do fluxo operacional completo, do cadastro ao faturamento</li>
                 <li>Automação de regras de negócio e integração com emissão fiscal</li>
               </ul>
             </article>
@@ -482,8 +478,8 @@
           <section class="highlight-box">
             <h3>Diferenciais</h3>
             <p>
-              Capacidade de compreender o contexto do negócio e desenvolver soluções que estruturam
-              processos.
+              Combina visão técnica de backend com entendimento do negócio, modelando domínios complexos,
+              estruturando produtos SaaS e evoluindo sistemas com impacto real na operação.
             </p>
           </section>
         </main>
