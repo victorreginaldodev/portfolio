@@ -9,6 +9,7 @@ import ProjectPage from './components/ProjectPage'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import { getProjectBySlug } from './content/projects'
+import { downloadResumePdf } from './utils/downloadResumePdf'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -33,6 +34,7 @@ function getCurrentProjectSlug(hash: string) {
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentHash, setCurrentHash] = useState(() => window.location.hash)
+  const [isDownloadingResume, setIsDownloadingResume] = useState(false)
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -54,6 +56,24 @@ function App() {
       window.scrollTo(0, 0)
     }
   }, [isProjectView, currentProjectSlug])
+
+  async function handleResumeDownload() {
+    if (isDownloadingResume) {
+      return
+    }
+
+    setIsDownloadingResume(true)
+
+    try {
+      await downloadResumePdf()
+      setIsMenuOpen(false)
+    } catch (error) {
+      console.error('Erro ao gerar PDF do curriculo:', error)
+      window.alert('Nao foi possivel gerar o PDF do curriculo agora. Tente novamente em instantes.')
+    } finally {
+      setIsDownloadingResume(false)
+    }
+  }
 
   return (
     <main className={`landing-shell${isProjectView ? ' project-shell' : ''}`} id="home">
@@ -97,14 +117,15 @@ function App() {
             ))}
           </nav>
 
-          <a
+          <button
+            type="button"
             className={`resume-button${isMenuOpen ? ' resume-button-open' : ''}`}
-            href="/Victor-Reginaldo-Curriculo.pdf"
-            download
+            onClick={handleResumeDownload}
+            disabled={isDownloadingResume}
           >
             <FaDownload aria-hidden="true" />
-            <span>Baixar curriculo</span>
-          </a>
+            <span>{isDownloadingResume ? 'Gerando PDF...' : 'Baixar curriculo'}</span>
+          </button>
         </header>
       )}
 

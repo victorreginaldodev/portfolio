@@ -47,12 +47,12 @@
 
       .resume-layout {
         display: grid;
-        grid-template-columns: 68mm 1fr;
+        grid-template-columns: 80mm 1fr;
         min-height: 297mm;
       }
 
       .sidebar {
-        padding: 28px 24px 24px;
+        padding: 22px 20px 20px;
         background:
           radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 42%),
           linear-gradient(180deg, #eef5f7 0%, #e9f0f3 100%);
@@ -60,22 +60,29 @@
       }
 
       .main {
-        padding: 28px 30px 26px;
+        padding: 22px 24px 20px;
       }
 
       .photo-wrap {
         display: flex;
         justify-content: center;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
+        width: 132px;
+        height: 132px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 4px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 30px rgba(15, 23, 32, 0.18);
       }
 
       .photo {
-        width: 148px;
-        height: 148px;
-        border-radius: 24px;
+        width: 100%;
+        height: 100%;
+        display: block;
         object-fit: cover;
-        border: 4px solid rgba(255, 255, 255, 0.95);
-        box-shadow: 0 12px 30px rgba(15, 23, 32, 0.18);
+        object-position: center top;
       }
 
       h1,
@@ -87,16 +94,16 @@
       }
 
       .name {
-        font-size: 2rem;
+        font-size: 1.86rem;
         line-height: 1.05;
         letter-spacing: -0.03em;
         color: var(--heading);
       }
 
       .title {
-        margin-top: 8px;
-        font-size: 0.95rem;
-        line-height: 1.45;
+        margin-top: 6px;
+        font-size: 0.9rem;
+        line-height: 1.35;
         color: var(--accent);
         font-weight: 700;
         text-transform: uppercase;
@@ -104,14 +111,14 @@
       }
 
       .summary {
-        margin-top: 14px;
-        font-size: 0.92rem;
-        line-height: 1.62;
+        margin-top: 10px;
+        font-size: 0.88rem;
+        line-height: 1.5;
         color: var(--muted);
       }
 
       .section {
-        margin-top: 24px;
+        margin-top: 18px;
       }
 
       .section:first-child {
@@ -122,19 +129,19 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 12px;
-        padding: 7px 12px;
+        margin-bottom: 10px;
+        padding: 6px 11px;
         border-radius: 999px;
         background: var(--accent-soft);
         color: var(--accent);
-        font-size: 0.76rem;
+        font-size: 0.72rem;
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
       .sidebar .section-title {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
 
       .contact-list,
@@ -144,9 +151,47 @@
 
       .contact-list li,
       .bullet-list li {
-        margin-bottom: 7px;
-        font-size: 0.9rem;
-        line-height: 1.48;
+        margin-bottom: 5px;
+        font-size: 0.86rem;
+        line-height: 1.4;
+      }
+
+      .contact-list li {
+        white-space: nowrap;
+      }
+
+      .contact-list {
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .contact-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        color: var(--accent);
+      }
+
+      .contact-icon svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .contact-icon.brand svg {
+        fill: currentColor;
+        stroke: none;
       }
 
       .contact-list li:last-child,
@@ -160,24 +205,24 @@
 
       .skills-grid {
         display: grid;
-        gap: 12px;
+        gap: 10px;
       }
 
       .skill-group h3 {
-        margin-bottom: 5px;
-        font-size: 0.88rem;
+        margin-bottom: 3px;
+        font-size: 0.84rem;
         color: var(--heading);
       }
 
       .skill-group p {
-        font-size: 0.86rem;
-        line-height: 1.55;
+        font-size: 0.82rem;
+        line-height: 1.42;
         color: var(--muted);
       }
 
       .experience-item {
-        padding-top: 15px;
-        margin-top: 15px;
+        padding-top: 12px;
+        margin-top: 12px;
         border-top: 1px solid var(--line);
       }
 
@@ -191,58 +236,58 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 8px;
+        gap: 12px;
+        margin-bottom: 6px;
       }
 
       .experience-head h3 {
-        font-size: 1.02rem;
-        line-height: 1.3;
+        font-size: 0.98rem;
+        line-height: 1.22;
         color: var(--heading);
       }
 
       .company {
-        margin-top: 3px;
-        font-size: 0.9rem;
+        margin-top: 2px;
+        font-size: 0.86rem;
         font-weight: 700;
         color: var(--accent);
       }
 
       .period {
         flex-shrink: 0;
-        padding: 5px 10px;
+        padding: 4px 9px;
         border: 1px solid var(--line);
         border-radius: 999px;
-        font-size: 0.76rem;
+        font-size: 0.72rem;
         font-weight: 700;
         color: var(--muted);
         white-space: nowrap;
       }
 
       .experience-text {
-        margin-bottom: 9px;
-        font-size: 0.89rem;
-        line-height: 1.58;
+        margin-bottom: 7px;
+        font-size: 0.85rem;
+        line-height: 1.45;
         color: var(--muted);
       }
 
       .highlight-box {
-        margin-top: 18px;
-        padding: 16px 18px;
+        margin-top: 14px;
+        padding: 14px 16px;
         border: 1px solid var(--line);
         border-radius: 18px;
         background: linear-gradient(180deg, rgba(15, 118, 110, 0.05), rgba(15, 118, 110, 0.02));
       }
 
       .highlight-box h3 {
-        margin-bottom: 8px;
-        font-size: 0.94rem;
+        margin-bottom: 6px;
+        font-size: 0.9rem;
         color: var(--heading);
       }
 
       .highlight-box p {
-        font-size: 0.88rem;
-        line-height: 1.56;
+        font-size: 0.84rem;
+        line-height: 1.42;
         color: var(--muted);
       }
 
@@ -282,19 +327,49 @@
           <section class="section">
             <div class="section-title">Contato</div>
             <ul class="contact-list">
-              <li>Uberaba, MG • Brasil</li>
-              <li><a href="mailto:contato.victordev02@gmail.com">contato.victordev02@gmail.com</a></li>
-              <li><a href="tel:+5534996941992">(34) 9 9694-1992</a></li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="M4 7l8 6 8-6"></path>
+                  </svg>
+                </span>
+                <a href="mailto:contato.victordev02@gmail.com">contato.victordev02@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8 9.68a16 16 0 0 0 6.32 6.32l1.23-1.28a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
+                <a href="tel:+5534996941992">(34) 9 9694-1992</a>
+              </li>
+              <li>
+                <span class="contact-icon brand" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 .5C5.65.5.5 5.8.5 12.34c0 5.23 3.3 9.67 7.88 11.24.58.11.79-.26.79-.57 0-.28-.01-1.2-.02-2.18-3.21.72-3.89-1.4-3.89-1.4-.53-1.37-1.3-1.73-1.3-1.73-1.06-.75.08-.73.08-.73 1.17.08 1.79 1.24 1.79 1.24 1.04 1.83 2.73 1.3 3.39 1 .11-.77.41-1.3.74-1.6-2.56-.3-5.24-1.31-5.24-5.84 0-1.29.45-2.34 1.18-3.16-.12-.3-.51-1.5.11-3.12 0 0 .97-.32 3.19 1.21A10.8 10.8 0 0 1 12 5.95c.96 0 1.93.13 2.84.38 2.21-1.53 3.18-1.21 3.18-1.21.63 1.62.24 2.82.12 3.12.74.82 1.18 1.87 1.18 3.16 0 4.54-2.69 5.53-5.26 5.83.42.37.79 1.08.79 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.8.57 4.57-1.57 7.86-6.01 7.86-11.23C23.5 5.8 18.35.5 12 .5z"></path>
+                  </svg>
+                </span>
+                <a href="https://github.com/victorreginaldodev" target="_blank" rel="noreferrer">github.com/victorreginaldodev</a>
+              </li>
+              <li>
+                <span class="contact-icon brand" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46a2.48 2.48 0 0 0-.02-4.96zM3 9.75h4v11.75H3zm7.25 0H14v1.6h.05c.52-.98 1.78-2.02 3.66-2.02 3.91 0 4.64 2.67 4.64 6.14v6.03h-4v-5.35c0-1.28-.02-2.93-1.73-2.93-1.74 0-2 1.4-2 2.84v5.44h-4z"></path>
+                  </svg>
+                </span>
+                <a href="https://www.linkedin.com/in/devvictor01/" target="_blank" rel="noreferrer">linkedin.com/in/devvictor01</a>
+              </li>
             </ul>
           </section>
 
           <section class="section">
             <div class="section-title">Qualificações</div>
             <ul class="bullet-list">
-              <li>Modelagem de domínios complexos e regras de negócio</li>
-              <li>Criação de sistemas SaaS e arquiteturas multi-tenant</li>
-              <li>Automação de processos operacionais e técnicos</li>
-              <li>Entrega end-to-end com visão de produto e impacto</li>
+              <li>Modelagem de domínios e regras de negócio orientadas à realidade operacional</li>
+              <li>Desenvolvimento de sistemas SaaS com arquitetura modular e escalável</li>
+              <li>Automação de processos técnicos e administrativos</li>
+              <li>Entrega de soluções completas com visão de produto e impacto no negócio</li>
             </ul>
           </section>
 
@@ -303,19 +378,19 @@
             <div class="skills-grid">
               <div class="skill-group">
                 <h3>Backend</h3>
-                <p>Python, Django, APIs, arquitetura orientada a domínio</p>
+                <p>Python, Django, APIs REST e modelagem de domínio</p>
               </div>
               <div class="skill-group">
                 <h3>Frontend</h3>
-                <p>React, TypeScript e interfaces para produtos digitais</p>
+                <p>React, TypeScript e construção de interfaces</p>
               </div>
               <div class="skill-group">
                 <h3>Dados e Infra</h3>
-                <p>MySQL, modelagem de dados e arquitetura modular</p>
+                <p>MySQL, modelagem de dados e organização de sistemas</p>
               </div>
               <div class="skill-group">
                 <h3>Especialidades</h3>
-                <p>OpenXML, `python-docx`, geração documental e automação</p>
+                <p>OpenXML, python-docx e geração automatizada de documentos</p>
               </div>
             </div>
           </section>
@@ -324,10 +399,10 @@
             <div class="section-title">Competências</div>
             <ul class="bullet-list">
               <li>Arquitetura de software</li>
-              <li>Sistemas SaaS</li>
+              <li>Desenvolvimento de sistemas SaaS</li>
               <li>Automação de processos</li>
               <li>Desenvolvimento backend</li>
-              <li>Integração entre áreas de negócio</li>
+              <li>Integração entre negócio e tecnologia</li>
               <li>Estruturação de produtos digitais</li>
             </ul>
           </section>
@@ -338,24 +413,24 @@
             <h1 class="name">Victor Reginaldo</h1>
             <div class="title">Engenheiro de Software • Backend • SaaS • Produto</div>
             <p class="summary">
-              Engenheiro de Software com foco em sistemas SaaS e soluções B2B, atuando na
-              construção de plataformas orientadas a negócio. Experiência prática em modelagem de
-              domínio, automação de processos, geração de documentos técnicos e desenvolvimento de
-              produtos para Saúde e Segurança do Trabalho.
+              Engenheiro de Software com experiência no desenvolvimento de sistemas SaaS e soluções B2B,
+              com foco na construção de plataformas orientadas a negócio.
+            </p>
+            <p class="summary">
+              Atua na modelagem de domínio, automação de processos e desenvolvimento de soluções que
+              estruturam e organizam operações reais, especialmente na área de Saúde e Segurança do Trabalho.
             </p>
           </section>
 
           <section class="section">
             <div class="section-title">Resumo Profissional</div>
             <p class="experience-text">
-              Atuo no desenvolvimento de software com forte orientação a negócio, estruturando
-              sistemas que transformam operações manuais em fluxos digitais mais previsíveis,
-              escaláveis e produtivos.
+              Experiência no desenvolvimento de sistemas que substituem processos manuais por fluxos digitais
+              mais organizados, previsíveis e escaláveis.
             </p>
             <p class="experience-text">
-              Minha experiência combina engenharia, produto e entendimento operacional,
-              especialmente em contextos onde o software precisa refletir regras complexas do
-              mundo real e gerar ganhos concretos para a empresa.
+              Atua conectando engenharia, produto e operação, traduzindo regras de negócio em soluções
+              confiáveis e alinhadas às necessidades reais da empresa.
             </p>
           </section>
 
@@ -365,21 +440,20 @@
             <article class="experience-item">
               <div class="experience-head">
                 <div>
-                  <h3>Cofundador &amp; Engenheiro de Software</h3>
+                  <h3>Cofundador & Engenheiro de Software</h3>
                   <div class="company">SSTSuite (SaaS)</div>
                 </div>
                 <div class="period">2025 - Atual</div>
               </div>
               <p class="experience-text">
                 Desenvolvimento de uma plataforma SaaS para Saúde e Segurança do Trabalho,
-                estruturando avaliações técnicas, análise de riscos ocupacionais e automação da
-                geração de documentos.
+                estruturando processos técnicos, avaliações e geração de documentos.
               </p>
               <ul class="bullet-list">
-                <li>Concepção do produto desde a ideia até a arquitetura da solução</li>
-                <li>Modelagem de domínio para múltiplos tipos de avaliações técnicas</li>
-                <li>Arquitetura modular e escalável com foco em crescimento do produto</li>
-                <li>Módulos como AEP, iluminância, gestão de riscos, plano de ação e dashboard</li>
+                <li>Concepção e desenvolvimento do produto desde a ideia até a arquitetura</li>
+                <li>Modelagem de domínio para diferentes tipos de avaliações técnicas</li>
+                <li>Estruturação de arquitetura modular voltada à evolução do sistema</li>
+                <li>Implementação de módulos como AEP, iluminância e dashboard analítico</li>
               </ul>
             </article>
 
@@ -392,34 +466,15 @@
                 <div class="period">Set/2023 - Jan/2025</div>
               </div>
               <p class="experience-text">
-                Atuação em sistemas para automação de processos técnicos e operacionais de SST,
-                com foco em relatórios, análises ergonômicas e padronização de entregas.
+                Desenvolvimento de sistemas internos para suportar a operação técnica e administrativa da empresa.
               </p>
               <ul class="bullet-list">
-                <li>Automação de AEP e avaliações de iluminância</li>
-                <li>Fluxo digital para coleta de dados técnicos e geração de relatórios</li>
-                <li>Documentos complexos em Word com OpenXML e alto controle de formatação</li>
-                <li>Redução significativa do tempo operacional e do retrabalho manual</li>
-              </ul>
-            </article>
-
-            <article class="experience-item">
-              <div class="experience-head">
-                <div>
-                  <h3>Desenvolvedor de Software</h3>
-                  <div class="company">Ergogroup Medicina e Segurança do Trabalho</div>
-                </div>
-                <div class="period">Set/2023 - Jan/2025</div>
-              </div>
-              <p class="experience-text">
-                Desenvolvimento de ERP interno para integrar comercial, técnico e financeiro em uma
-                operação digital unificada.
-              </p>
-              <ul class="bullet-list">
-                <li>Modelagem do fluxo operacional completo, da venda ao faturamento</li>
-                <li>Substituição de planilhas dispersas por uma plataforma centralizada</li>
+                <li>Automação de avaliações técnicas como AEP e iluminância</li>
+                <li>Estruturação do fluxo digital de coleta de dados e geração de relatórios</li>
+                <li>Geração de documentos complexos em Word com Python-docx</li>
+                <li>Modelagem do fluxo operacional do início ao faturamento</li>
+                <li>Centralização de processos anteriormente baseados em planilhas</li>
                 <li>Automação de regras de negócio e integração com emissão fiscal</li>
-                <li>Mais previsibilidade, consistência operacional e controle do processo</li>
               </ul>
             </article>
           </section>
@@ -427,16 +482,10 @@
           <section class="highlight-box">
             <h3>Diferenciais</h3>
             <p>
-              Forte capacidade de entender o negócio antes de propor a solução técnica, com
-              experiência em sistemas em produção que geram receita, reduzem custo e conectam
-              operação, produto e engenharia em uma única visão de execução.
+              Capacidade de compreender o contexto do negócio e desenvolver soluções que estruturam
+              processos.
             </p>
           </section>
-
-          <p class="footer-note">
-            Currículo preparado para download em PDF com layout otimizado para leitura em tela e
-            impressão.
-          </p>
         </main>
       </div>
     </article>

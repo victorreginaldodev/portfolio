@@ -143,10 +143,18 @@
 .resume-button {
   display: none;
   padding: 0.8rem 1.16rem;
+  border: 0;
   color: #f7fffc;
   background: linear-gradient(135deg, rgba(31, 196, 151, 0.84), rgba(16, 140, 108, 0.82));
   box-shadow: 0 8px 18px rgba(7, 38, 31, 0.14);
   font-weight: 700;
+  font: inherit;
+  cursor: pointer;
+}
+
+.resume-button:disabled {
+  cursor: wait;
+  opacity: 0.78;
 }
 
 .resume-button-open {
