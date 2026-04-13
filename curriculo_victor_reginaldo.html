@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Reginaldo Silva — Engenheiro de Software Backend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:        #0f1117;
+      --ink-mid:    #3a3d4a;
+      --ink-light:  #6b6f80;
+      --ink-xlight: #9a9eae;
+      --rule:       #e2e3e8;
+      --rule-strong:#c8c9d0;
+      --bg:         #fafaf8;
+      --bg-warm:    #f4f3ef;
+      --accent:     #1a1a2e;
+      --accent-2:   #c8392b;
+      --tag-bg:     #ededeb;
+      --tag-text:   #3a3d4a;
+
+      --f-display: 'DM Serif Display', Georgia, serif;
+      --f-body:    'DM Sans', system-ui, sans-serif;
+
+      --s1: 4px;
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s5: 24px;
+      --s6: 32px;
+      --s7: 48px;
+      --s8: 64px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent-2); }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--s7) var(--s6);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--s5);
+      align-items: end;
+      padding-bottom: var(--s6);
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: var(--s6);
+    }
+
+    .header-left {}
+
+    .label {
+      font-family: var(--f-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: var(--s2);
+    }
+
+    .name {
+      font-family: var(--f-display);
+      font-size: 3.4rem;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--ink-mid);
+    }
+
+    .tagline {
+      margin-top: var(--s3);
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      font-weight: 300;
+      max-width: 440px;
+      line-height: 1.55;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+      align-items: flex-end;
+    }
+
+    .contact-list li {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      font-weight: 400;
+    }
+
+    .contact-list li a {
+      color: var(--ink-light);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact-list li a:hover {
+      color: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    /* ── BODY GRID ── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: var(--s7);
+      align-items: start;
+    }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: var(--s7); }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-xlight);
+      margin-bottom: var(--s4);
+      padding-bottom: var(--s2);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item { margin-bottom: var(--s6); }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--s3);
+      margin-bottom: var(--s2);
+      flex-wrap: wrap;
+    }
+
+    .exp-role {
+      font-family: var(--f-display);
+      font-size: 1.25rem;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .exp-period {
+      font-size: 0.78rem;
+      color: var(--ink-xlight);
+      font-weight: 400;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .exp-company {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--accent-2);
+      margin-bottom: var(--s3);
+    }
+
+    .exp-desc {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      font-weight: 300;
+      margin-bottom: var(--s3);
+      line-height: 1.65;
+    }
+
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+    }
+
+    .bullets li {
+      font-size: 0.875rem;
+      color: var(--ink-mid);
+      padding-left: var(--s4);
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule-strong);
+      font-size: 0.8rem;
+    }
+
+    .bullets li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .exp-divider {
+      border: none;
+      border-top: 1px dashed var(--rule);
+      margin: var(--s5) 0;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar .section { margin-bottom: var(--s6); }
+
+    .sidebar-item {
+      margin-bottom: var(--s4);
+    }
+
+    .sidebar-item:last-child { margin-bottom: 0; }
+
+    .sidebar-item-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: var(--s1);
+    }
+
+    .sidebar-item-sub {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    /* tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+    }
+
+    .tag {
+      font-size: 0.74rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 3px 9px;
+      border-radius: 3px;
+      letter-spacing: 0.01em;
+    }
+
+    .tag.highlight {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: var(--s7);
+      padding-top: var(--s4);
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: var(--ink-xlight);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; font-size: 13px; }
+      .page { padding: 24px 28px; }
+      .header { padding-bottom: 20px; margin-bottom: 20px; }
+      .body { gap: 32px; }
+      .name { font-size: 2.6rem; }
+      a { color: inherit !important; }
+    }
+
+    @media (max-width: 680px) {
+      .header { grid-template-columns: 1fr; }
+      .header-right { text-align: left; }
+      .contact-list { align-items: flex-start; }
+      .body { grid-template-columns: 1fr; }
+      .name { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <header class="header">
+    <div class="header-left">
+      <p class="label">Engenheiro de Software Backend</p>
+      <h1 class="name">Victor Reginaldo<br><em>Silva e Silva</em></h1>
+      <p class="tagline">Backend, SaaS e sistemas de negócio. Experiência ponta a ponta, da modelagem à entrega em produção.</p>
+    </div>
+    <div class="header-right">
+      <ul class="contact-list">
+        <li>Uberaba, MG</li>
+        <li><a href="mailto:victor@victorreginaldodev.com">victor@victorreginaldodev.com</a></li>
+        <li><a href="https://www.linkedin.com/in/devvictor01/" target="_blank">linkedin.com/in/devvictor01</a></li>
+        <li><a href="https://github.com/victorreginaldodev" target="_blank">github.com/victorreginaldodev</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ══ BODY ══ -->
+  <div class="body">
+
+    <!-- MAIN COLUMN -->
+    <main>
+
+      <!-- EXPERIÊNCIA -->
+      <section class="section">
+        <p class="section-label">Experiência Profissional</p>
+
+        <!-- Ergogroup — Sistemas internos -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <h3 class="exp-role">Engenheiro de Software</h3>
+            <span class="exp-period">Set 2023 — presente</span>
+          </div>
+          <p class="exp-company">Ergogroup Medicina e Segurança do Trabalho</p>
+          <p class="exp-desc">
+            Responsável pelo desenvolvimento integral de dois sistemas internos — ERP administrativo e plataforma técnica de ergonomia — atuando como único engenheiro em ambos os projetos.
+          </p>
+          <ul class="bullets">
+            <li>Desenvolveu <strong>ERP completo</strong> para gestão administrativa da empresa, integrando os módulos comercial, técnico e financeiro em um único sistema.</li>
+            <li>Construiu sistema de <strong>automação de relatórios técnicos</strong> de ergonomia (AEPs) e laudos de iluminância, eliminando processo manual de elaboração.</li>
+            <li>Atuou de forma autônoma desde a modelagem de dados e arquitetura até a entrega e sustentação em produção.</li>
+            <li>Stack principal: <strong>Python, Django, Django REST Framework, MySQL, React.</strong></li>
+          </ul>
+        </div>
+
+        <hr class="exp-divider">
+
+        <!-- SSTSuite -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <h3 class="exp-role">Founder &amp; Líder Técnico</h3>
+            <span class="exp-period">Em curso</span>
+          </div>
+          <p class="exp-company">SSTSuite — SaaS de Saúde e Segurança do Trabalho</p>
+          <p class="exp-desc">
+            Criação e liderança técnica de dois produtos SaaS no segmento SST, com base de clientes ativa e segundo produto em desenvolvimento para grandes indústrias.
+          </p>
+          <ul class="bullets">
+            <li><strong>SSTSuite</strong> — plataforma de avaliações SST automatizadas, com <strong>mais de 30 clientes ativos</strong> em produção.</li>
+            <li><strong>Sistema de Gestão SST de Terceirizadas</strong> — produto em desenvolvimento para indústrias de grande porte, com escopo de gestão de <strong>+100 mil funcionários</strong>.</li>
+            <li>Lidera equipe de <strong>2 desenvolvedores freelancers</strong>, conduzindo arquitetura, revisão de código e decisões técnicas do produto.</li>
+            <li>Stack: <strong>Python, Django, DRF, FastAPI, MySQL, React.</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FORMAÇÃO -->
+      <section class="section">
+        <p class="section-label">Formação</p>
+        <div class="exp-item">
+          <div class="exp-header">
+            <h3 class="exp-role">Análise e Desenvolvimento de Sistemas</h3>
+            <span class="exp-period">Cursando</span>
+          </div>
+          <p class="exp-company">UniBF — Centro Universitário Brasileiro</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- STACK -->
+      <section class="section">
+        <p class="section-label">Stack Técnica</p>
+
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Backend</p>
+          <div class="tags" style="margin-top: 6px;">
+            <span class="tag highlight">Python</span>
+            <span class="tag highlight">Django</span>
+            <span class="tag">DRF</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+          </div>
+        </div>
+
+        <div class="sidebar-item" style="margin-top: 14px;">
+          <p class="sidebar-item-title">Dados</p>
+          <div class="tags" style="margin-top: 6px;">
+            <span class="tag highlight">MySQL</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Modelagem relacional</span>
+          </div>
+        </div>
+
+        <div class="sidebar-item" style="margin-top: 14px;">
+          <p class="sidebar-item-title">Frontend &amp; Interface</p>
+          <div class="tags" style="margin-top: 6px;">
+            <span class="tag">React</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="sidebar-item" style="margin-top: 14px;">
+          <p class="sidebar-item-title">Práticas &amp; Outros</p>
+          <div class="tags" style="margin-top: 6px;">
+            <span class="tag">APIs REST</span>
+            <span class="tag">Git</span>
+            <span class="tag">Arquitetura de software</span>
+            <span class="tag">RAG</span>
+            <span class="tag">IA aplicada</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIFERENCIAIS -->
+      <section class="section">
+        <p class="section-label">Diferenciais</p>
+
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Execução autônoma</p>
+          <p class="sidebar-item-sub">Entregou sistemas completos sozinho — da modelagem ao deploy — sem supervisão técnica.</p>
+        </div>
+
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Liderança técnica</p>
+          <p class="sidebar-item-sub">Lidera equipe de devs em produto com clientes reais e escopo de alto volume.</p>
+        </div>
+
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Domínio de negócio</p>
+          <p class="sidebar-item-sub">Experiência com regras de negócio densas em SST, ergonomia e processos corporativos.</p>
+        </div>
+      </section>
+
+      <!-- IDIOMAS -->
+      <section class="section">
+        <p class="section-label">Idiomas</p>
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Português</p>
+          <p class="sidebar-item-sub">Nativo</p>
+        </div>
+        <div class="sidebar-item">
+          <p class="sidebar-item-title">Inglês</p>
+          <p class="sidebar-item-sub">Leitura técnica</p>
+        </div>
+      </section>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-note">victor@victorreginaldodev.com</span>
+    <span class="footer-note">Uberaba, MG · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -3,278 +3,861 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor | Desenvolvedor Backend</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="main.css" />
+  <title>Victor Reginaldo — Engenheiro de Software Backend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
   <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
+  <style>
+    :root {
+      --ink:        #0f1117;
+      --ink-mid:    #3a3d4a;
+      --ink-light:  #6b6f80;
+      --ink-xlight: #9a9eae;
+      --rule:       #e2e3e8;
+      --rule-strong:#c8c9d0;
+      --bg:         #fafaf8;
+      --bg-warm:    #f4f3ef;
+      --bg-card:    #f0efeb;
+      --accent:     #c8392b;
+      --accent-dark:#a32e22;
+
+      --f-display: 'DM Serif Display', Georgia, serif;
+      --f-body:    'DM Sans', system-ui, sans-serif;
+
+      --nav-h: 60px;
+      --max-w: 960px;
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 15px; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--f-display);
+      font-size: 1.15rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      transition: color 0.15s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s var(--ease);
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cv {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 16px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-cv:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .nav-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 80px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .hero-name {
+      font-family: var(--f-display);
+      font-size: clamp(3rem, 6vw, 4.8rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--ink-mid);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      font-weight: 300;
+      max-width: 460px;
+      line-height: 1.65;
+      margin-top: 20px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--rule-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo {
+      width: 220px;
+      height: 260px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+      filter: grayscale(15%);
+      transition: filter 0.3s;
+    }
+
+    .hero-photo:hover { filter: grayscale(0%); }
+
+    .hero-photo-accent {
+      position: absolute;
+      top: 12px; left: 12px; right: -12px; bottom: -12px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 88px 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section:last-of-type { border-bottom: none; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-xlight);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--ink-mid);
+    }
+
+    .section-rule {
+      height: 1px;
+      background: var(--rule);
+      margin-bottom: 40px;
+    }
+
+    /* ── SOBRE ── */
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .sobre-text {
+      font-size: 1.02rem;
+      color: var(--ink-mid);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .sobre-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .sobre-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-item {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-number {
+      font-family: var(--f-display);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .stat-number span { color: var(--accent); }
+
+    .stat-desc {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      font-weight: 300;
+    }
+
+    /* ── HABILIDADES ── */
+    .skills-section { background: var(--bg-warm); }
+
+    .skills-groups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+
+    .skill-group {
+      padding: 32px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .skill-group:last-child { border-right: none; }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-xlight);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      font-weight: 400;
+    }
+
+    .skill-item .iconify {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .skill-item.primary {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rule-strong);
+      flex-shrink: 0;
+    }
+
+    .skill-dot.filled { background: var(--ink); }
+    .skill-dot.accent { background: var(--accent); }
+
+    /* ── PROJETOS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 32px;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+
+    .project-item:last-child { border-bottom: none; }
+    .project-item:hover { background: var(--bg-warm); }
+
+    .project-num {
+      font-family: var(--f-display);
+      font-size: 1.4rem;
+      color: var(--rule-strong);
+      font-style: italic;
+      padding-top: 2px;
+      transition: color 0.15s;
+    }
+
+    .project-item:hover .project-num { color: var(--accent); }
+
+    .project-body {}
+
+    .project-name {
+      font-family: var(--f-display);
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--ink-light);
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      max-width: 540px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: var(--bg-card);
+      color: var(--ink-mid);
+      padding: 3px 10px;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+    }
+
+    .project-meta {
+      text-align: right;
+      padding-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .project-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .project-badge.live {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .project-badge.dev {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .project-badge.internal {
+      background: var(--bg-card);
+      color: var(--ink-light);
+      border: 1px solid var(--rule);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      justify-content: flex-end;
+    }
+
+    .project-link-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--ink-light);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .project-link-icon:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .project-link-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── CONTATO ── */
+    .contato-section { background: var(--ink); color: #fff; }
+
+    .contato-section .section-label { color: rgba(255,255,255,0.35); }
+    .contato-section .section-title { color: #fff; }
+    .contato-section .section-title em { color: rgba(255,255,255,0.5); }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 32px;
+      background: var(--ink);
+      transition: background 0.15s;
+    }
+
+    .contact-card:hover { background: #1a1d26; }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .contact-icon svg { width: 16px; height: 16px; }
+
+    .contact-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .contact-value {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      transition: color 0.15s;
+    }
+
+    .contact-card:hover .contact-value { color: #fff; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 24px 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: var(--f-display);
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: var(--ink-xlight);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: var(--nav-h); left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        padding: 24px 32px;
+        gap: 20px;
+      }
+      .nav-menu-btn { display: flex; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px;
+      }
+      .hero-photo-wrap { display: none; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .skills-groups { grid-template-columns: 1fr; }
+      .skill-group { border-right: none; border-bottom: 1px solid var(--rule); }
+      .skill-group:last-child { border-bottom: none; }
+
+      .project-item { grid-template-columns: 32px 1fr; }
+      .project-meta { display: none; }
+
+      .contato-grid { grid-template-columns: 1fr; }
+      .section { padding: 64px 24px; }
+      .footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header" id="header">
-    <div class="header-inner">
-      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+  <!-- ══ NAV ══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Victor <span>Reginaldo</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="curriculo_victor_reginaldo.html" class="nav-cv" target="_blank">Currículo →</a></li>
+      </ul>
+      <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
-      <a href="#hero" class="logo">Portfólio</a>
-      <nav class="nav" id="nav">
-        <a href="#sobre">Sobre</a>
-        <a href="#habilidades">Habilidades</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
-      </nav>
     </div>
-    <div class="header-line"></div>
-  </header>
+  </nav>
 
-  <!-- HERO -->
+  <!-- ══ HERO ══ -->
   <section class="hero" id="hero">
-    <div class="hero-content">
-      <p class="hero-greeting">Olá, eu sou o</p>
-      <h1 class="hero-name">Victor <span class="accent">Reginaldo</span> <span class="wave">:)</span></h1>
-      <p class="hero-role">Desenvolvedor <span class="accent">Backend Python</span></p>
-      <p class="hero-sub">Especializado em construir sistemas robustos, escaláveis e de alto desempenho com Python, FastAPI e Django.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary" download>Download CV</a>
-        <a href="#contato" class="btn btn-outline">Entre em contato</a>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <p class="hero-label">Engenheiro de Software Backend</p>
+        <h1 class="hero-name">Victor Reginaldo<br><em>Silva e Silva</em></h1>
+        <p class="hero-sub">
+          Backend, SaaS e sistemas de negócio complexo. Experiência ponta a ponta — da modelagem à entrega em produção, com foco em resultado real para o cliente.
+        </p>
+        <div class="hero-actions">
+          <a href="curriculo_victor_reginaldo.html" class="btn btn-primary" target="_blank">Ver currículo</a>
+          <a href="#contato" class="btn btn-outline">Entre em contato</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-ring">
-        <img src="assets/victor/foto-perfil.jpeg" alt="Foto de Victor" class="hero-photo" />
-      </div>
-      <div class="hero-photo-glow"></div>
-    </div>
-  </section>
-
-  <!-- SOBRE MIM -->
-  <section class="section sobre" id="sobre">
-    <div class="container">
-      <h2 class="section-title">Sobre mim</h2>
-      <div class="section-divider"></div>
-      <p class="sobre-text">
-        Desenvolvedor Backend especializado em criar soluções digitais robustas, escaláveis e focadas em performance.
-        Tenho sólida experiência em projetos de grande porte na área de <strong>Saúde e Segurança do Trabalho (SST)</strong>,
-        desenvolvendo sistemas completos com Python, utilizando tecnologias modernas como FastAPI, Django, PostgreSQL e Docker.
-        Sou apaixonado por arquitetura limpa, automação de processos e pela entrega de software que realmente resolve problemas reais.
-      </p>
-    </div>
-  </section>
-
-  <!-- HABILIDADES -->
-  <section class="section habilidades" id="habilidades">
-    <div class="container">
-      <h2 class="section-title">Habilidades</h2>
-      <div class="section-divider"></div>
-      <div class="skills-grid">
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:python"></span>
-          <span class="skill-name">Python</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:fastapi"></span>
-          <span class="skill-name">FastAPI</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:django"></span>
-          <span class="skill-name">Django</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:postgresql"></span>
-          <span class="skill-name">PostgreSQL</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:docker"></span>
-          <span class="skill-name">Docker</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:git-icon"></span>
-          <span class="skill-name">Git</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:redis"></span>
-          <span class="skill-name">Redis</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:linux-tux"></span>
-          <span class="skill-name">Linux</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:sqlalchemy"></span>
-          <span class="skill-name">SQLAlchemy</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:rabbitmq"></span>
-          <span class="skill-name">RabbitMQ</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:nginx"></span>
-          <span class="skill-name">Nginx</span>
-        </div>
-
-        <div class="skill-card">
-          <span class="iconify skill-icon" data-icon="logos:github-icon"></span>
-          <span class="skill-name">GitHub</span>
-        </div>
-
+      <div class="hero-photo-wrap">
+        <img src="assets/victor/foto-perfil.jpeg" alt="Victor Reginaldo" class="hero-photo">
+        <div class="hero-photo-accent"></div>
       </div>
     </div>
   </section>
 
-  <!-- PROJETOS -->
-  <section class="section projetos" id="projetos">
+  <!-- ══ SOBRE ══ -->
+  <section class="section" id="sobre">
     <div class="container">
-      <h2 class="section-title">Projetos</h2>
-      <div class="section-divider"></div>
-
-      <!-- Destaque -->
-      <p class="subsection-label">Destaques</p>
-      <div class="featured-project">
-        <div class="featured-info">
-          <span class="project-tag">Suite Completa</span>
-          <h3 class="featured-title">SSTSuite</h3>
-          <p class="featured-desc">
-            Plataforma integrada de Saúde e Segurança do Trabalho que unifica gestão de riscos, laudos técnicos, mobilização de equipes e relatórios em um único ecossistema robusto e escalável.
+      <p class="section-label">Sobre</p>
+      <h2 class="section-title">Código que resolve<br><em>problemas reais.</em></h2>
+      <div class="section-rule"></div>
+      <div class="sobre-grid fade-in">
+        <div>
+          <p class="sobre-text">
+            Engenheiro de Software com foco em backend e construção de sistemas orientados ao negócio. Atuo desde setembro de 2023 na <strong>Ergogroup</strong>, onde desenvolvi dois sistemas internos completos — ERP administrativo e plataforma técnica de ergonomia — como único engenheiro em ambos os projetos.
           </p>
-          <div class="project-techs">
-            <span class="tech-badge">Python</span>
-            <span class="tech-badge">FastAPI</span>
-            <span class="tech-badge">PostgreSQL</span>
-            <span class="tech-badge">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="icon-link" title="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-            </a>
-            <a href="#" class="icon-link" title="Demo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-          </div>
+          <br>
+          <p class="sobre-text">
+            Paralelamente, fundei e lidero tecnicamente o <strong>SSTSuite</strong>, um SaaS de avaliações SST com mais de 30 clientes ativos. Atualmente desenvolvo um segundo produto para gestão de terceirizadas em grandes indústrias, com escopo de cobertura de mais de 100 mil funcionários. Lidero uma equipe de 2 desenvolvedores freelancers.
+          </p>
+          <br>
+          <p class="sobre-text">
+            Cursando Análise e Desenvolvimento de Sistemas pela <strong>UniBF</strong>. Aprofundando conhecimentos em AI Engineering e arquitetura de sistemas.
+          </p>
         </div>
-        <div class="featured-visual">
-          <div class="featured-screen">
-            <div class="screen-bar"><span></span><span></span><span></span></div>
-            <div class="screen-content">
-              <div class="screen-sidebar">
-                <div class="screen-menu-item active"></div>
-                <div class="screen-menu-item"></div>
-                <div class="screen-menu-item"></div>
-                <div class="screen-menu-item"></div>
-              </div>
-              <div class="screen-main">
-                <div class="screen-card"></div>
-                <div class="screen-card short"></div>
-                <div class="screen-row">
-                  <div class="screen-stat"></div>
-                  <div class="screen-stat"></div>
-                  <div class="screen-stat"></div>
-                </div>
-              </div>
-            </div>
+        <div class="sobre-stats">
+          <div class="stat-item">
+            <div class="stat-number">30<span>+</span></div>
+            <div class="stat-desc">Clientes ativos no SSTSuite</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100<span>k+</span></div>
+            <div class="stat-desc">Funcionários no escopo do produto em desenvolvimento</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2<span>+</span></div>
+            <div class="stat-desc">Anos de experiência com sistemas em produção</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-desc">Sistemas desenvolvidos e entregues</div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Todos os projetos -->
-      <p class="subsection-label" style="margin-top: 4rem;">Todos os projetos</p>
-      <div class="projects-grid">
+  <!-- ══ HABILIDADES ══ -->
+  <section class="section skills-section" id="habilidades">
+    <div class="container">
+      <p class="section-label">Stack técnica</p>
+      <h2 class="section-title">Habilidades</h2>
+      <div class="section-rule"></div>
+      <div class="skills-groups fade-in">
 
-        <div class="project-card">
-          <div class="project-card-visual erp">
-            <div class="project-card-screen">
-              <div class="pcs-bar"><span></span><span></span><span></span></div>
-              <div class="pcs-body">
-                <div class="pcs-row"><div class="pcs-block wide"></div><div class="pcs-block"></div></div>
-                <div class="pcs-row"><div class="pcs-block"></div><div class="pcs-block"></div><div class="pcs-block"></div></div>
-                <div class="pcs-table">
-                  <div class="pcs-tr"></div><div class="pcs-tr"></div><div class="pcs-tr"></div>
-                </div>
-              </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Backend</p>
+          <div class="skill-items">
+            <div class="skill-item primary">
+              <span class="iconify" data-icon="logos:python"></span>
+              Python
             </div>
-          </div>
-          <div class="project-card-info">
-            <h3>ERP SST</h3>
-            <p>Sistema ERP completo voltado para gestão integrada de processos de Saúde e Segurança do Trabalho, com módulos de RH, documentação e conformidade legal.</p>
-            <div class="project-techs">
-              <span class="tech-badge">Django</span>
-              <span class="tech-badge">PostgreSQL</span>
-              <span class="tech-badge">Celery</span>
+            <div class="skill-item primary">
+              <span class="iconify" data-icon="logos:django"></span>
+              Django / DRF
             </div>
-            <div class="project-links">
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <div class="skill-item primary">
+              <span class="iconify" data-icon="logos:fastapi"></span>
+              FastAPI
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:java"></span>
+              Java
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:spring-icon"></span>
+              Spring Boot
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:redis"></span>
+              Redis
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-card-visual ergonomia">
-            <div class="project-card-screen">
-              <div class="pcs-bar"><span></span><span></span><span></span></div>
-              <div class="pcs-body">
-                <div class="pcs-row"><div class="pcs-block wide"></div></div>
-                <div class="pcs-chart">
-                  <div class="pcs-bar-chart"><div style="height:60%"></div><div style="height:80%"></div><div style="height:45%"></div><div style="height:90%"></div><div style="height:70%"></div></div>
-                </div>
-                <div class="pcs-row"><div class="pcs-block"></div><div class="pcs-block"></div></div>
-              </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Dados &amp; Infra</p>
+          <div class="skill-items">
+            <div class="skill-item primary">
+              <span class="iconify" data-icon="logos:mysql"></span>
+              MySQL
             </div>
-          </div>
-          <div class="project-card-info">
-            <h3>Sistema de Técnico de Ergonomia</h3>
-            <p>Plataforma para avaliação ergonômica de postos de trabalho, geração automática de laudos técnicos e acompanhamento de melhorias com análise de dados.</p>
-            <div class="project-techs">
-              <span class="tech-badge">FastAPI</span>
-              <span class="tech-badge">Python</span>
-              <span class="tech-badge">Redis</span>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:postgresql"></span>
+              PostgreSQL
             </div>
-            <div class="project-links">
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <div class="skill-item">
+              <span class="skill-dot filled"></span>
+              Modelagem relacional
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:docker"></span>
+              Docker
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:nginx"></span>
+              Nginx
+            </div>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:git-icon"></span>
+              Git / GitHub
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-card-visual mobilizacao">
-            <div class="project-card-screen">
-              <div class="pcs-bar"><span></span><span></span><span></span></div>
-              <div class="pcs-body">
-                <div class="pcs-avatars">
-                  <div class="pcs-avatar"></div>
-                  <div class="pcs-avatar"></div>
-                  <div class="pcs-avatar"></div>
-                  <div class="pcs-avatar"></div>
-                </div>
-                <div class="pcs-row"><div class="pcs-block wide"></div></div>
-                <div class="pcs-row"><div class="pcs-block"></div><div class="pcs-block"></div><div class="pcs-block"></div></div>
-              </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Frontend &amp; IA</p>
+          <div class="skill-items">
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:react"></span>
+              React
             </div>
-          </div>
-          <div class="project-card-info">
-            <h3>Sistema de Mobilização</h3>
-            <p>Sistema de gestão e mobilização de equipes SST com controle de escalas, notificações automáticas, rastreamento de atividades em campo e painel de supervisão em tempo real.</p>
-            <div class="project-techs">
-              <span class="tech-badge">Django</span>
-              <span class="tech-badge">WebSocket</span>
-              <span class="tech-badge">Docker</span>
+            <div class="skill-item">
+              <span class="iconify" data-icon="logos:javascript"></span>
+              JavaScript
             </div>
-            <div class="project-links">
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-              <a href="#" class="icon-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+            <div class="skill-item">
+              <span class="skill-dot"></span>
+              HTML / CSS
+            </div>
+            <div class="skill-item">
+              <span class="skill-dot accent"></span>
+              RAG
+            </div>
+            <div class="skill-item">
+              <span class="skill-dot accent"></span>
+              Embeddings
+            </div>
+            <div class="skill-item">
+              <span class="skill-dot accent"></span>
+              IA aplicada a produto
             </div>
           </div>
         </div>
@@ -283,54 +866,175 @@
     </div>
   </section>
 
-  <!-- CONTATO -->
-  <section class="section contato" id="contato">
+  <!-- ══ PROJETOS ══ -->
+  <section class="section" id="projetos">
     <div class="container">
-      <h2 class="section-title">Contato</h2>
-      <div class="section-divider"></div>
-      <div class="contact-grid">
+      <p class="section-label">Trabalhos</p>
+      <h2 class="section-title">Projetos em<br><em>destaque.</em></h2>
+      <div class="section-rule"></div>
+      <div class="projects-list fade-in">
 
-        <a href="mailto:victor@email.com" class="contact-card">
+        <div class="project-item">
+          <div class="project-num">01</div>
+          <div class="project-body">
+            <h3 class="project-name">SSTSuite</h3>
+            <p class="project-desc">
+              Plataforma SaaS de avaliações de Saúde e Segurança do Trabalho automatizadas. Módulos técnicos, dashboards, regras de negócio densas e gestão de documentação. Mais de 30 clientes ativos em produção.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">DRF</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">React</span>
+            </div>
+          </div>
+          <div class="project-meta">
+            <span class="project-badge live">Em produção</span>
+            <div class="project-links">
+              <a href="https://github.com/victorreginaldodev" target="_blank" class="project-link-icon" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-num">02</div>
+          <div class="project-body">
+            <h3 class="project-name">Gestão SST de Terceirizadas</h3>
+            <p class="project-desc">
+              Sistema em desenvolvimento para gestão de SST em grandes indústrias, com escopo de cobertura de mais de 100 mil funcionários terceirizados. Liderança técnica de equipe com 2 devs freelancers.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">React</span>
+            </div>
+          </div>
+          <div class="project-meta">
+            <span class="project-badge dev">Em desenvolvimento</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-num">03</div>
+          <div class="project-body">
+            <h3 class="project-name">ERP Administrativo — Ergogroup</h3>
+            <p class="project-desc">
+              Sistema ERP completo para gestão da rotina administrativa da empresa, integrando os módulos comercial, técnico e financeiro. Desenvolvido integralmente como único engenheiro do projeto.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">React</span>
+            </div>
+          </div>
+          <div class="project-meta">
+            <span class="project-badge internal">Interno</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-num">04</div>
+          <div class="project-body">
+            <h3 class="project-name">Sistema Técnico de Ergonomia</h3>
+            <p class="project-desc">
+              Plataforma para automação de relatórios técnicos complexos — AEPs, laudos de iluminância e avaliações ergonômicas — eliminando processo manual de elaboração de documentação técnica.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">DRF</span>
+              <span class="project-tag">MySQL</span>
+            </div>
+          </div>
+          <div class="project-meta">
+            <span class="project-badge internal">Interno</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTATO ══ -->
+  <section class="section contato-section" id="contato">
+    <div class="container">
+      <p class="section-label">Contato</p>
+      <h2 class="section-title">Vamos conversar<br><em>sobre seu projeto.</em></h2>
+      <div class="section-rule" style="background: rgba(255,255,255,0.12);"></div>
+      <div class="contato-grid fade-in">
+
+        <a href="mailto:victor@victorreginaldodev.com" class="contact-card">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
           <p class="contact-label">E-mail</p>
-          <p class="contact-value">victor@email.com</p>
+          <p class="contact-value">victor@victorreginaldodev.com</p>
         </a>
 
-        <a href="https://linkedin.com/in/victor" target="_blank" class="contact-card">
+        <a href="https://www.linkedin.com/in/devvictor01/" target="_blank" class="contact-card">
           <div class="contact-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </div>
           <p class="contact-label">LinkedIn</p>
-          <p class="contact-value">@victor</p>
+          <p class="contact-value">linkedin.com/in/devvictor01</p>
         </a>
 
-        <a href="https://github.com/victor" target="_blank" class="contact-card">
+        <a href="https://github.com/victorreginaldodev" target="_blank" class="contact-card">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </div>
           <p class="contact-label">GitHub</p>
-          <p class="contact-value">@victor</p>
+          <p class="contact-value">github.com/victorreginaldodev</p>
         </a>
 
-        <a href="https://wa.me/5500000000000" target="_blank" class="contact-card">
+        <a href="https://wa.me/5534999999999" target="_blank" class="contact-card">
           <div class="contact-icon">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </div>
           <p class="contact-label">WhatsApp</p>
-          <p class="contact-value">(00) 00000-0000</p>
+          <p class="contact-value">(34) 99999-9999</p>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ══ FOOTER ══ -->
   <footer class="footer">
-    <p>Desenvolvido por <strong>Victor Reginaldo</strong> &mdash; 2026</p>
+    <span class="footer-name">Victor Reginaldo Silva e Silva</span>
+    <span class="footer-note">Uberaba, MG · victor@victorreginaldodev.com</span>
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+    // Nav mobile toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
