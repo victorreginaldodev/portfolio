@@ -293,8 +293,45 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── DOWNLOAD BUTTON ── */
+    .btn-download {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--f-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      transition: background 0.15s, transform 0.1s;
+      z-index: 100;
+    }
+
+    .btn-download:hover {
+      background: var(--accent-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
+    .btn-download svg {
+      flex-shrink: 0;
+    }
+
     /* ── PRINT ── */
     @media print {
+      .btn-download { display: none; }
       body { background: #fff; font-size: 13px; }
       .page { padding: 24px 28px; }
       .header { padding-bottom: 20px; margin-bottom: 20px; }
@@ -488,5 +525,23 @@
   </footer>
 
 </div>
+
+<button class="btn-download" onclick="downloadPDF()">
+  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.5 10.5L3.5 6.5H6V1.5H9V6.5H11.5L7.5 10.5Z" fill="currentColor"/>
+    <path d="M2 12.5H13V13.5H2V12.5Z" fill="currentColor"/>
+  </svg>
+  Baixar PDF
+</button>
+
+<script>
+  function downloadPDF() {
+    const original = document.title;
+    document.title = 'Victor_Reginaldo_Silva_Curriculo';
+    window.print();
+    document.title = original;
+  }
+</script>
+
 </body>
 </html>
