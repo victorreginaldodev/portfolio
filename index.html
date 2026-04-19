@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor Reginaldo — Engenheiro de Software Backend</title>
+  <title>Victor Reginaldo — Desenvolvedor Full-Stack</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
@@ -211,92 +211,129 @@
       gap: 8px;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 12px 24px;
       border-radius: 2px;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: all 0.15s var(--ease);
       cursor: pointer;
-      border: 1px solid transparent;
     }
 
     .btn-primary {
-      background: var(--ink);
+      background: var(--accent);
       color: #fff;
-      border-color: var(--ink);
+      border: 1px solid var(--accent);
     }
 
     .btn-primary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
     }
 
-    .btn-outline {
+    .btn-secondary {
       background: transparent;
       color: var(--ink);
-      border-color: var(--rule-strong);
+      border: 1px solid var(--ink);
     }
 
-    .btn-outline:hover {
-      border-color: var(--ink);
+    .btn-secondary:hover {
+      background: var(--ink);
+      color: var(--bg);
     }
 
-    .hero-photo-wrap {
+    .hero-social {
+      display: flex;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-light);
+      transition: color 0.15s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-avatar {
       position: relative;
+      width: 280px;
+      height: 280px;
       flex-shrink: 0;
     }
 
-    .hero-photo {
-      width: 220px;
-      height: 260px;
+    .hero-avatar::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .hero-avatar img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center top;
       border-radius: 4px;
       border: 1px solid var(--rule);
-      filter: grayscale(15%);
-      transition: filter 0.3s;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.13);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
     }
 
-    .hero-photo:hover { filter: grayscale(0%); }
-
-    .hero-photo-accent {
-      position: absolute;
-      top: 12px; left: 12px; right: -12px; bottom: -12px;
-      border: 1px solid var(--accent);
-      border-radius: 4px;
-      z-index: -1;
-      opacity: 0.4;
+    .hero-avatar:hover img {
+      transform: translate(-4px, -4px);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.18);
     }
 
-    /* ── SECTIONS ── */
-    .section {
-      padding: 88px 32px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .section:last-of-type { border-bottom: none; }
-
+    /* ── CONTAINER ── */
     .container {
       max-width: var(--max-w);
       margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 120px 0;
+      border-bottom: 1px solid var(--rule);
     }
 
     .section-label {
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ink-xlight);
-      margin-bottom: 8px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
     .section-title {
       font-family: var(--f-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      line-height: 1.1;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 40px;
+      margin-bottom: 16px;
     }
 
     .section-title em {
@@ -305,233 +342,252 @@
     }
 
     .section-rule {
-      height: 1px;
-      background: var(--rule);
-      margin-bottom: 40px;
+      width: 120px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 64px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ── SOBRE ── */
     .sobre-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1fr 300px;
+      gap: 80px;
       align-items: start;
     }
 
     .sobre-text {
-      font-size: 1.02rem;
-      color: var(--ink-mid);
-      font-weight: 300;
-      line-height: 1.75;
-    }
-
-    .sobre-text strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .sobre-stats {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
-    .stat-item {
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--rule);
+    .sobre-text p {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
     }
 
-    .stat-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .stat-number {
-      font-family: var(--f-display);
-      font-size: 2.6rem;
-      line-height: 1;
+    .sobre-text p strong {
       color: var(--ink);
-      margin-bottom: 4px;
+      font-weight: 600;
     }
 
-    .stat-number span { color: var(--accent); }
-
-    .stat-desc {
-      font-size: 0.85rem;
-      color: var(--ink-light);
-      font-weight: 300;
+    .sobre-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    /* ── HABILIDADES ── */
-    .skills-section { background: var(--bg-warm); }
-
-    .skills-groups {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+    .sobre-card {
+      background: var(--bg-card);
       border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 24px;
     }
 
-    .skill-group {
-      padding: 32px;
-      border-right: 1px solid var(--rule);
-    }
-
-    .skill-group:last-child { border-right: none; }
-
-    .skill-group-title {
+    .sobre-card-label {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ink-xlight);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--rule);
+      margin-bottom: 8px;
+    }
+
+    .sobre-card-value {
+      font-family: var(--f-display);
+      font-size: 1.8rem;
+      color: var(--ink);
+    }
+
+    .sobre-card-desc {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      margin-top: 4px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 48px;
+    }
+
+    .skill-cat {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-xlight);
+      margin-bottom: 4px;
     }
 
     .skill-items {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 10px;
     }
 
     .skill-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: var(--ink-mid);
-      font-weight: 400;
-    }
-
-    .skill-item .iconify {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .skill-item.primary {
-      font-weight: 600;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
       color: var(--ink);
+      background: var(--bg-card);
+      padding: 6px 12px;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+    }
+
+    .skill-item svg, .skill-item .iconify {
+      width: 16px;
+      height: 16px;
     }
 
     .skill-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--rule-strong);
+      background: var(--ink-xlight);
       flex-shrink: 0;
     }
 
-    .skill-dot.filled { background: var(--ink); }
-    .skill-dot.accent { background: var(--accent); }
+    .skill-dot.highlight {
+      background: var(--ink);
+    }
 
-    /* ── PROJETOS ── */
+    .skill-dot.accent {
+      background: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
     .projects-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      border: 1px solid var(--rule);
+      gap: 48px;
     }
 
     .project-item {
       display: grid;
-      grid-template-columns: 48px 1fr auto;
-      gap: 24px;
+      grid-template-columns: 80px 1fr auto;
+      gap: 32px;
       align-items: start;
-      padding: 32px;
-      border-bottom: 1px solid var(--rule);
-      transition: background 0.15s;
+      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      transition: border-color 0.2s;
     }
 
-    .project-item:last-child { border-bottom: none; }
-    .project-item:hover { background: var(--bg-warm); }
+    .project-item:hover {
+      border-color: var(--rule-strong);
+    }
 
     .project-num {
       font-family: var(--f-display);
-      font-size: 1.4rem;
-      color: var(--rule-strong);
-      font-style: italic;
-      padding-top: 2px;
-      transition: color 0.15s;
+      font-size: 2rem;
+      color: var(--ink-xlight);
     }
 
-    .project-item:hover .project-num { color: var(--accent); }
-
-    .project-body {}
+    .project-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
     .project-name {
       font-family: var(--f-display);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: var(--ink);
-      margin-bottom: 8px;
       line-height: 1.2;
     }
 
     .project-desc {
-      font-size: 0.875rem;
-      color: var(--ink-light);
-      font-weight: 300;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
       line-height: 1.65;
-      margin-bottom: 14px;
-      max-width: 540px;
+    }
+
+    .project-desc strong {
+      color: var(--ink);
+      font-weight: 600;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
+      margin-top: 8px;
     }
 
     .project-tag {
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      background: var(--bg-card);
-      color: var(--ink-mid);
-      padding: 3px 10px;
+      color: var(--ink-light);
+      background: rgba(0,0,0,0.03);
+      padding: 4px 10px;
       border-radius: 2px;
       border: 1px solid var(--rule);
     }
 
     .project-meta {
-      text-align: right;
-      padding-top: 4px;
-      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
     }
 
     .project-badge {
-      display: inline-block;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 2px;
+      white-space: nowrap;
     }
 
     .project-badge.live {
-      background: #dcfce7;
-      color: #166534;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
     }
 
     .project-badge.dev {
-      background: #fef9c3;
-      color: #854d0e;
+      background: #fff3e0;
+      color: #e65100;
+      border: 1px solid #ffcc80;
     }
 
     .project-badge.internal {
-      background: var(--bg-card);
-      color: var(--ink-light);
-      border: 1px solid var(--rule);
+      background: #e3f2fd;
+      color: #1565c0;
+      border: 1px solid #90caf9;
     }
 
     .project-links {
       display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      justify-content: flex-end;
+      gap: 12px;
     }
 
     .project-link-icon {
@@ -540,145 +596,193 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--ink-light);
       border: 1px solid var(--rule);
       border-radius: 2px;
-      color: var(--ink-light);
-      transition: border-color 0.15s, color 0.15s;
+      transition: all 0.15s;
     }
 
     .project-link-icon:hover {
-      border-color: var(--ink);
-      color: var(--ink);
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     .project-link-icon svg {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
     }
 
     /* ── CONTATO ── */
-    .contato-section { background: var(--ink); color: #fff; }
-
-    .contato-section .section-label { color: rgba(255,255,255,0.35); }
-    .contato-section .section-title { color: #fff; }
-    .contato-section .section-title em { color: rgba(255,255,255,0.5); }
-
-    .contato-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.1);
+    .contato-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+      color: #fff;
     }
 
-    .contact-card {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding: 32px;
-      background: var(--ink);
-      transition: background 0.15s;
-    }
-
-    .contact-card:hover { background: #1a1d26; }
-
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 2px;
-      margin-bottom: 8px;
+    .contato-section .section-label {
       color: rgba(255,255,255,0.6);
     }
 
-    .contact-icon svg { width: 16px; height: 16px; }
+    .contato-section .section-title {
+      color: #fff;
+    }
+
+    .contato-section .section-title em {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s var(--ease);
+    }
+
+    .contact-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .contact-icon svg {
+      width: 24px;
+      height: 24px;
+    }
 
     .contact-label {
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.5);
     }
 
     .contact-value {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      font-weight: 300;
-      transition: color 0.15s;
+      font-size: 0.88rem;
+      color: #fff;
+      font-weight: 400;
     }
-
-    .contact-card:hover .contact-value { color: #fff; }
 
     /* ── FOOTER ── */
     .footer {
-      padding: 24px 32px;
+      padding: 32px;
+      background: var(--bg-warm);
       border-top: 1px solid var(--rule);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .footer-name {
       font-family: var(--f-display);
       font-size: 0.95rem;
-      color: var(--ink-mid);
-      font-style: italic;
+      color: var(--ink);
     }
 
     .footer-note {
-      font-size: 0.75rem;
-      color: var(--ink-xlight);
-      letter-spacing: 0.04em;
-    }
-
-    /* ── FADE IN ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
+      font-size: 0.78rem;
+      color: var(--ink-light);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 720px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
+    @media (max-width: 768px) {
+      .nav-links {
         position: fixed;
-        top: var(--nav-h); left: 0; right: 0;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
         background: var(--bg);
-        border-bottom: 1px solid var(--rule);
+        flex-direction: column;
+        gap: 0;
         padding: 24px 32px;
-        gap: 20px;
+        border-bottom: 1px solid var(--rule);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
       }
-      .nav-menu-btn { display: flex; }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+      }
+
+      .nav-menu-btn {
+        display: flex;
+      }
 
       .hero-inner {
         grid-template-columns: 1fr;
-        padding: 48px 24px;
+        gap: 40px;
       }
-      .hero-photo-wrap { display: none; }
 
-      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
-      .skills-groups { grid-template-columns: 1fr; }
-      .skill-group { border-right: none; border-bottom: 1px solid var(--rule); }
-      .skill-group:last-child { border-bottom: none; }
+      .hero-avatar {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+      }
 
-      .project-item { grid-template-columns: 32px 1fr; }
-      .project-meta { display: none; }
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
 
-      .contato-grid { grid-template-columns: 1fr; }
-      .section { padding: 64px 24px; }
-      .footer { flex-direction: column; gap: 8px; text-align: center; }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .project-num {
+        font-size: 1.5rem;
+      }
+
+      .project-meta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .contato-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -687,44 +791,50 @@
   <!-- ══ NAV ══ -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Victor <span>Reginaldo</span></a>
+      <a href="#" class="nav-logo">Victor <span>Reginaldo</span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#habilidades">Habilidades</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#contato">Contato</a></li>
-        <li><a href="curriculo_victor_reginaldo.html" class="nav-cv" target="_blank">Currículo →</a></li>
+        <li><a href="#" onclick="downloadCV(); return false;" class="nav-cv">Baixar CV</a></li>
       </ul>
       <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </nav>
 
   <!-- ══ HERO ══ -->
-  <section class="hero" id="hero">
+  <section class="hero">
     <div class="hero-inner">
-      <div class="hero-left">
-        <p class="hero-label">Engenheiro de Software Backend</p>
+      <div>
+        <p class="hero-label">DESENVOLVEDOR FULL-STACK</p>
         <h1 class="hero-name">Victor Reginaldo<br><em>Silva e Silva</em></h1>
         <p class="hero-sub">
-          Backend, SaaS e sistemas de negócio complexo. Experiência ponta a ponta — da modelagem à entrega em produção, com foco em resultado real para o cliente.
+          Desenvolvedor full-stack com +2 anos construindo sistemas em produção. 
+          Python/Django (backend), React (frontend). 
+          Mais de 30 clientes ativos usando meus sistemas diariamente.
         </p>
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="downloadCV()">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M7 9.5L3 5.5h2.5V1h3v4.5H11L7 9.5Z" fill="currentColor"/>
-              <rect x="1.5" y="11" width="11" height="1.5" rx="0.75" fill="currentColor"/>
-            </svg>
-            Baixar currículo
-          </button>
-          <a href="curriculo_victor_reginaldo.html" class="btn btn-outline" target="_blank">Ver currículo</a>
-          <a href="#contato" class="btn btn-outline">Entre em contato</a>
+          <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+          <a href="#contato" class="btn btn-secondary">Entrar em contato</a>
+        </div>
+        <div class="hero-social">
+          <a href="https://github.com/victorreginaldodev" target="_blank" class="social-link" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/devvictor01/" target="_blank" class="social-link" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:victor@victorreginaldodev.com" class="social-link" title="E-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="hero-photo-wrap">
-        <img src="assets/victor/foto-perfil.jpeg" alt="Victor Reginaldo" class="hero-photo">
-        <div class="hero-photo-accent"></div>
+      <div class="hero-avatar">
+        <img src="assets/victor/foto-perfil.jpeg" alt="Victor Reginaldo">
       </div>
     </div>
   </section>
@@ -733,142 +843,157 @@
   <section class="section" id="sobre">
     <div class="container">
       <p class="section-label">Sobre</p>
-      <h2 class="section-title">Código que resolve<br><em>problemas reais.</em></h2>
+      <h2 class="section-title">Desenvolvedor com foco<br><em>em resultados.</em></h2>
       <div class="section-rule"></div>
       <div class="sobre-grid fade-in">
-        <div>
-          <p class="sobre-text">
-            Engenheiro de Software com foco em backend e construção de sistemas orientados ao negócio. Atuo desde setembro de 2023 na <strong>Ergogroup</strong>, onde desenvolvi dois sistemas internos completos — ERP administrativo e plataforma técnica de ergonomia — como único engenheiro em ambos os projetos.
+        <div class="sobre-text">
+          <p>
+            Desenvolvedor <strong>full-stack especializado em Python/Django (backend) e React (frontend)</strong>, 
+            atuando em projetos desde a concepção técnica até a entrega em produção.
           </p>
-          <br>
-          <p class="sobre-text">
-            Paralelamente, fundei e lidero tecnicamente o <strong>SSTSuite</strong>, um SaaS de avaliações SST com mais de 30 clientes ativos. Atualmente desenvolvo um segundo produto para gestão de terceirizadas em grandes indústrias, com escopo de cobertura de mais de 100 mil funcionários. Lidero uma equipe de 2 desenvolvedores freelancers.
+          <p>
+            Responsável técnico por <strong>dois produtos SaaS no segmento SST</strong>, com <strong>30+ clientes 
+            ativos em produção</strong> e segundo produto em desenvolvimento para gestão de <strong>+100 mil 
+            funcionários terceirizados</strong>. Lidero equipe de 2 desenvolvedores e atuo como único engenheiro 
+            em sistemas internos enterprise.
           </p>
-          <br>
-          <p class="sobre-text">
-            Cursando Análise e Desenvolvimento de Sistemas pela <strong>UniBF</strong>. Aprofundando conhecimentos em AI Engineering e arquitetura de sistemas.
+          <p>
+            Experiência comprovada: <strong>+5 sistemas entregues</strong>, <strong>+1 ano em produção</strong>, 
+            automação que reduziu <strong>60% do tempo de geração de relatórios</strong>. Domínio completo da stack: 
+            modelagem de dados, arquitetura de software, desenvolvimento, deploy e sustentação.
           </p>
         </div>
-        <div class="sobre-stats">
-          <div class="stat-item">
-            <div class="stat-number">30<span>+</span></div>
-            <div class="stat-desc">Clientes ativos no SSTSuite</div>
+        <div class="sobre-cards">
+          <div class="sobre-card">
+            <p class="sobre-card-label">Clientes ativos</p>
+            <p class="sobre-card-value">30+</p>
+            <p class="sobre-card-desc">Produtos SaaS em produção</p>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">100<span>k+</span></div>
-            <div class="stat-desc">Funcionários no escopo do produto em desenvolvimento</div>
+          <div class="sobre-card">
+            <p class="sobre-card-label">Usuários</p>
+            <p class="sobre-card-value">100k+</p>
+            <p class="sobre-card-desc">Sistema enterprise em desenvolvimento</p>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">2<span>+</span></div>
-            <div class="stat-desc">Anos de experiência com sistemas em produção</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">4</div>
-            <div class="stat-desc">Sistemas desenvolvidos e entregues</div>
+          <div class="sobre-card">
+            <p class="sobre-card-label">Experiência</p>
+            <p class="sobre-card-value">+2 anos</p>
+            <p class="sobre-card-desc">Sistemas em produção</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ HABILIDADES ══ -->
-  <section class="section skills-section" id="habilidades">
-    <div class="container">
-      <p class="section-label">Stack técnica</p>
-      <h2 class="section-title">Habilidades</h2>
-      <div class="section-rule"></div>
-      <div class="skills-groups fade-in">
+      <!-- SKILLS -->
+      <div style="margin-top: 80px;">
+        <p class="section-label">Stack Técnica</p>
+        <div class="skills-grid fade-in">
 
-        <div class="skill-group">
-          <p class="skill-group-title">Backend</p>
-          <div class="skill-items">
-            <div class="skill-item primary">
-              <span class="iconify" data-icon="logos:python"></span>
-              Python
-            </div>
-            <div class="skill-item primary">
-              <span class="iconify" data-icon="logos:django"></span>
-              Django / DRF
-            </div>
-            <div class="skill-item primary">
-              <span class="iconify" data-icon="logos:fastapi"></span>
-              FastAPI
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:java"></span>
-              Java
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:spring-icon"></span>
-              Spring Boot
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:redis"></span>
-              Redis
+          <div class="skill-cat">
+            <p class="skill-label">Backend</p>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:python"></span>
+                Python
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot highlight"></span>
+                Django
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot highlight"></span>
+                Django REST Framework
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                FastAPI
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="skill-group">
-          <p class="skill-group-title">Dados &amp; Infra</p>
-          <div class="skill-items">
-            <div class="skill-item primary">
-              <span class="iconify" data-icon="logos:mysql"></span>
-              MySQL
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:postgresql"></span>
-              PostgreSQL
-            </div>
-            <div class="skill-item">
-              <span class="skill-dot filled"></span>
-              Modelagem relacional
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:docker"></span>
-              Docker
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:nginx"></span>
-              Nginx
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:git-icon"></span>
-              Git / GitHub
+          <div class="skill-cat">
+            <p class="skill-label">Banco de Dados</p>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:postgresql"></span>
+                PostgreSQL
+              </div>
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:mysql"></span>
+                MySQL
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                SQLite
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                Modelagem relacional
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="skill-group">
-          <p class="skill-group-title">Frontend &amp; IA</p>
-          <div class="skill-items">
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:react"></span>
-              React
-            </div>
-            <div class="skill-item">
-              <span class="iconify" data-icon="logos:javascript"></span>
-              JavaScript
-            </div>
-            <div class="skill-item">
-              <span class="skill-dot"></span>
-              HTML / CSS
-            </div>
-            <div class="skill-item">
-              <span class="skill-dot accent"></span>
-              RAG
-            </div>
-            <div class="skill-item">
-              <span class="skill-dot accent"></span>
-              Embeddings
-            </div>
-            <div class="skill-item">
-              <span class="skill-dot accent"></span>
-              IA aplicada a produto
+          <div class="skill-cat">
+            <p class="skill-label">Frontend</p>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:react"></span>
+                React
+              </div>
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:javascript"></span>
+                JavaScript
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                HTML / CSS
+              </div>
             </div>
           </div>
-        </div>
 
+          <div class="skill-cat">
+            <p class="skill-label">DevOps & Ferramentas</p>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:docker-icon"></span>
+                Docker
+              </div>
+              <div class="skill-item">
+                <span class="iconify" data-icon="logos:git-icon"></span>
+                Git
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                Linux
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot"></span>
+                APIs REST
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-cat">
+            <p class="skill-label">IA & Automação</p>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="skill-dot accent"></span>
+                OpenAI API
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot accent"></span>
+                RAG
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot accent"></span>
+                Embeddings
+              </div>
+              <div class="skill-item">
+                <span class="skill-dot accent"></span>
+                Análise documental
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -886,7 +1011,10 @@
           <div class="project-body">
             <h3 class="project-name">SSTSuite</h3>
             <p class="project-desc">
-              Plataforma SaaS de avaliações de Saúde e Segurança do Trabalho automatizadas. Módulos técnicos, dashboards, regras de negócio densas e gestão de documentação. Mais de 30 clientes ativos em produção.
+              Plataforma SaaS multi-tenant de avaliações SST automatizadas. <strong>30+ clientes ativos</strong> 
+              gerando relatórios técnicos diariamente. Módulos: análise de riscos ergonômicos, laudos técnicos, 
+              dashboards KPI, gestão documental. Sistema <strong>em produção há +1 ano</strong> com isolamento 
+              completo de dados por cliente.
             </p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
@@ -894,6 +1022,7 @@
               <span class="project-tag">DRF</span>
               <span class="project-tag">MySQL</span>
               <span class="project-tag">React</span>
+              <span class="project-tag">Celery</span>
             </div>
           </div>
           <div class="project-meta">
@@ -911,14 +1040,18 @@
           <div class="project-body">
             <h3 class="project-name">Gestão SST de Terceirizadas</h3>
             <p class="project-desc">
-              Sistema em desenvolvimento para gestão de SST em grandes indústrias, com escopo de cobertura de mais de 100 mil funcionários terceirizados. Liderança técnica de equipe com 2 devs freelancers.
+              Sistema enterprise para gestão de conformidade SST em grandes indústrias. Escopo: <strong>+100 mil 
+              funcionários terceirizados</strong>. Upload e <strong>análise automatizada de documentos via IA 
+              (OpenAI API)</strong>, dashboards de compliance, notificações automáticas. <strong>Lidero equipe 
+              de 2 desenvolvedores</strong> (arquitetura, code review, roadmap).
             </p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
               <span class="project-tag">Django</span>
               <span class="project-tag">FastAPI</span>
-              <span class="project-tag">MySQL</span>
+              <span class="project-tag">PostgreSQL</span>
               <span class="project-tag">React</span>
+              <span class="project-tag">OpenAI API</span>
             </div>
           </div>
           <div class="project-meta">
@@ -931,13 +1064,16 @@
           <div class="project-body">
             <h3 class="project-name">ERP Administrativo — Ergogroup</h3>
             <p class="project-desc">
-              Sistema ERP completo para gestão da rotina administrativa da empresa, integrando os módulos comercial, técnico e financeiro. Desenvolvido integralmente como único engenheiro do projeto.
+              Sistema ERP integrando comercial, técnico e financeiro. <strong>Em produção há +1 ano</strong> 
+              gerenciando operações diárias, eliminando 5+ planilhas Excel. Interface responsiva (React) com 
+              dashboards em tempo real. <strong>Desenvolvido sozinho</strong> como único engenheiro (100% da stack).
             </p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
               <span class="project-tag">Django</span>
               <span class="project-tag">MySQL</span>
               <span class="project-tag">React</span>
+              <span class="project-tag">Celery</span>
             </div>
           </div>
           <div class="project-meta">
@@ -950,7 +1086,9 @@
           <div class="project-body">
             <h3 class="project-name">Sistema Técnico de Ergonomia</h3>
             <p class="project-desc">
-              Plataforma para automação de relatórios técnicos complexos — AEPs, laudos de iluminância e avaliações ergonômicas — eliminando processo manual de elaboração de documentação técnica.
+              Plataforma de automação de relatórios técnicos SST (AEPs, laudos de iluminância, avaliações ergonômicas). 
+              <strong>Redução de 60% no tempo de geração</strong> (processo manual para automatizado). Sistema interno 
+              rodando há +1 ano com regras de negócio densas de ergonomia ocupacional.
             </p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
