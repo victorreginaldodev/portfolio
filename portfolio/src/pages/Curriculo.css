@@ -300,6 +300,12 @@
   transform: translateY(0);
 }
 
+.cv-btn-download:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+}
+
 .cv-btn-download svg {
   flex-shrink: 0;
 }

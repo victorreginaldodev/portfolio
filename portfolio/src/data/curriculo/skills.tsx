@@ -25,6 +25,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'React', highlight: true },
       { name: 'JavaScript' },
       { name: 'HTML/CSS' },
+      { name: 'PWA' },
     ],
   },
   {

@@ -4,16 +4,16 @@ export const differentials: Differential[] = [
   {
     title: 'Execução autônoma',
     description:
-      'Desenvolveu +5 sistemas completos como único engenheiro — ERP, plataforma SaaS multi-tenant, portais — da modelagem ao deploy, sem supervisão técnica.',
+      'Atua como referência técnica em sistemas reais — ERP, SaaS multi-tenant, portais enterprise — da modelagem de dados ao deploy, sem supervisão técnica.',
   },
   {
     title: 'Liderança técnica',
     description:
-      'Lidera equipe de 2 devs em produto SaaS com 30+ clientes ativos. Responsável por arquitetura, code review e decisões de stack.',
+      'Coordena tecnicamente equipe de desenvolvimento no portal enterprise da Ergogroup. Responsável por arquitetura, code review e decisões de stack.',
   },
   {
     title: 'IA Aplicada',
     description:
-      'Experiência integrando IA (OpenAI API) em sistemas reais: análise automatizada de documentos, classificação, extração de dados estruturados.',
+      'Experiência prática integrando IA (OpenAI API) em sistemas produtivos: análise automatizada de documentos, classificação e extração de dados estruturados.',
   },
 ]

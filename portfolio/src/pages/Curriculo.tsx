@@ -1,30 +1,40 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { pdf } from '@react-pdf/renderer'
 import { curriculoProfile } from '../data/curriculo/profile'
 import { experience } from '../data/curriculo/experience'
 import { education } from '../data/curriculo/education'
 import { skillCategories } from '../data/curriculo/skills'
 import { differentials } from '../data/curriculo/differentials'
 import { languages } from '../data/curriculo/languages'
+import { CurriculoDocument } from '../pdf/CurriculoDocument'
 import './Curriculo.css'
 
 export function Curriculo() {
   const [searchParams] = useSearchParams()
-  const hasAutoPrinted = useRef(false)
+  const hasAutoDownloaded = useRef(false)
+  const [isGenerating, setIsGenerating] = useState(false)
 
-  const handlePrint = () => {
-    const originalTitle = document.title
-    document.title = curriculoProfile.documentTitle
-    window.print()
-    document.title = originalTitle
+  const handleDownload = async () => {
+    setIsGenerating(true)
+    try {
+      const blob = await pdf(<CurriculoDocument />).toBlob()
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${curriculoProfile.documentTitle}.pdf`
+      link.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   useEffect(() => {
-    if (searchParams.get('download') !== '1' || hasAutoPrinted.current) return
+    if (searchParams.get('download') !== '1' || hasAutoDownloaded.current) return
 
-    hasAutoPrinted.current = true
-    const timer = setTimeout(handlePrint, 400)
-    return () => clearTimeout(timer)
+    hasAutoDownloaded.current = true
+    void handleDownload()
   }, [searchParams])
 
   return (
@@ -146,12 +156,17 @@ export function Curriculo() {
         <span className="cv-footer-note">{curriculoProfile.footerNote}</span>
       </footer>
 
-      <button className="cv-btn-download" type="button" onClick={handlePrint}>
+      <button
+        className="cv-btn-download"
+        type="button"
+        onClick={handleDownload}
+        disabled={isGenerating}
+      >
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.5 10.5L3.5 6.5H6V1.5H9V6.5H11.5L7.5 10.5Z" fill="currentColor" />
           <path d="M2 12.5H13V13.5H2V12.5Z" fill="currentColor" />
         </svg>
-        Baixar PDF
+        {isGenerating ? 'Gerando PDF…' : 'Baixar PDF'}
       </button>
     </div>
   )
