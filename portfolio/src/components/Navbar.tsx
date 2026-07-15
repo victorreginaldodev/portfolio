@@ -30,12 +30,12 @@ export function Navbar() {
           <li>
             <Link
               className="nav-cv"
-              to="/curriculo?download=1"
+              to="/curriculo"
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
             >
-              Baixar CV
+              Ver CV
             </Link>
           </li>
         </ul>
