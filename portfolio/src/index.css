@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+:root {
+  --ink: #0f1117;
+  --ink-mid: #3a3d4a;
+  --ink-light: #6b6f80;
+  --ink-xlight: #9a9eae;
+  --rule: #e2e3e8;
+  --rule-strong: #c8c9d0;
+  --bg: #fafaf8;
+  --bg-warm: #f4f3ef;
+  --bg-card: #f0efeb;
+  --accent: #c8392b;
+  --accent-dark: #a32e22;
+
+  --f-display: 'DM Serif Display', Georgia, serif;
+  --f-body: 'DM Sans', system-ui, sans-serif;
+
+  --nav-h: 60px;
+  --max-w: 960px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-family: var(--f-body);
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+  font-size: 15px;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}

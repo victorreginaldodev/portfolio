@@ -1,0 +1,360 @@
+.cv-page {
+  --cv-tag-bg: #ededeb;
+  --cv-tag-text: var(--ink-mid);
+  --cv-s1: 4px;
+  --cv-s2: 8px;
+  --cv-s3: 12px;
+  --cv-s4: 16px;
+  --cv-s5: 24px;
+  --cv-s6: 32px;
+  --cv-s7: 48px;
+
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--cv-s7) var(--cv-s6);
+  font-size: 15px;
+}
+
+/* ── HEADER ── */
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--cv-s5);
+  align-items: end;
+  padding-bottom: var(--cv-s6);
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: var(--cv-s6);
+}
+
+.cv-label {
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--cv-s2);
+}
+
+.cv-name {
+  font-family: var(--f-display);
+  font-size: 3.4rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.cv-name em {
+  font-style: italic;
+  color: var(--ink-mid);
+}
+
+.cv-tagline {
+  margin-top: var(--cv-s3);
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+  max-width: 440px;
+  line-height: 1.55;
+}
+
+.cv-header-right {
+  text-align: right;
+}
+
+.cv-contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cv-s1);
+  align-items: flex-end;
+}
+
+.cv-contact-list li {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  font-weight: 400;
+}
+
+.cv-contact-list li a {
+  color: var(--ink-light);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.cv-contact-list li a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── BODY GRID ── */
+.cv-body {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: var(--cv-s7);
+  align-items: start;
+}
+
+/* ── SECTIONS ── */
+.cv-section {
+  margin-bottom: var(--cv-s7);
+}
+
+.cv-section:last-child {
+  margin-bottom: 0;
+}
+
+.cv-section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-xlight);
+  margin-bottom: var(--cv-s4);
+  padding-bottom: var(--cv-s2);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── EXPERIENCE ── */
+.cv-exp-item {
+  margin-bottom: var(--cv-s6);
+}
+
+.cv-exp-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--cv-s3);
+  margin-bottom: var(--cv-s2);
+  flex-wrap: wrap;
+}
+
+.cv-exp-role {
+  font-family: var(--f-display);
+  font-size: 1.25rem;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.cv-exp-period {
+  font-size: 0.78rem;
+  color: var(--ink-xlight);
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.cv-exp-company {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: var(--cv-s3);
+}
+
+.cv-exp-desc {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+  margin-bottom: var(--cv-s3);
+  line-height: 1.65;
+}
+
+.cv-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cv-s2);
+}
+
+.cv-bullets li {
+  font-size: 0.875rem;
+  color: var(--ink-mid);
+  padding-left: var(--cv-s4);
+  position: relative;
+  line-height: 1.6;
+}
+
+.cv-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--rule-strong);
+  font-size: 0.8rem;
+}
+
+.cv-bullets li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.cv-exp-divider {
+  border: none;
+  border-top: 1px dashed var(--rule);
+  margin: var(--cv-s5) 0;
+}
+
+/* ── SIDEBAR ── */
+.cv-sidebar .cv-section {
+  margin-bottom: var(--cv-s6);
+}
+
+.cv-sidebar-item {
+  margin-bottom: var(--cv-s4);
+}
+
+.cv-sidebar-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-sidebar-item-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--cv-s1);
+}
+
+.cv-sidebar-item-sub {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+/* tags */
+.cv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cv-s2);
+  margin-top: 6px;
+}
+
+.cv-tag {
+  font-size: 0.74rem;
+  font-weight: 500;
+  background: var(--cv-tag-bg);
+  color: var(--cv-tag-text);
+  padding: 3px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.01em;
+}
+
+.cv-tag-highlight {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ── FOOTER ── */
+.cv-footer {
+  margin-top: var(--cv-s7);
+  padding-top: var(--cv-s4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cv-footer-note {
+  font-size: 0.72rem;
+  color: var(--ink-xlight);
+  letter-spacing: 0.04em;
+}
+
+/* ── DOWNLOAD BUTTON ── */
+.cv-btn-download {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  transition:
+    background 0.15s,
+    transform 0.1s;
+  z-index: 100;
+}
+
+.cv-btn-download:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.cv-btn-download:active {
+  transform: translateY(0);
+}
+
+.cv-btn-download svg {
+  flex-shrink: 0;
+}
+
+/* ── PRINT ── */
+@media print {
+  .cv-btn-download {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    font-size: 13px;
+  }
+
+  .cv-page {
+    padding: 24px 28px;
+  }
+
+  .cv-header {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cv-body {
+    gap: 32px;
+  }
+
+  .cv-name {
+    font-size: 2.6rem;
+  }
+
+  .cv-page a {
+    color: inherit !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .cv-header {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-header-right {
+    text-align: left;
+  }
+
+  .cv-contact-list {
+    align-items: flex-start;
+  }
+
+  .cv-body {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-name {
+    font-size: 2.4rem;
+  }
+}
